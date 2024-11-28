@@ -3,25 +3,40 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  font-family: "Poppins", sans-serif;
+  /* background-color: var(--background); */
+  /* font-weight: 800; */
+  /* font-style: normal; */
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    /* --background: 0 0% 100%; */
+    --background: 210 10% 93%;
+    /* --foreground: 240 10% 3.9%; */
+    --foreground: 210 12% 27%;
+    /* --card: 0 0% 100%; */
+    --card: 212 11% 27%;
+    /* --card-foreground: 240 10% 3.9%; */
+    --card-foreground: 219 100% 96%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
+    /* --primary: 240 5.9% 10%; */
+    --primary: 213 96% 22%;
+    /* --primary-foreground: 0 0% 98%; */
+    --primary-foreground: 220 100% 96%;
+    /* --secondary: 240 4.8% 95.9%; */
+    --secondary: 30 98% 62%;
     --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    /* --muted: 240 4.8% 95.9%; */
+    --muted: 210 10% 93%;
+    /* --muted-foreground: 240 3.8% 46.1%; */
+    --muted-foreground: 213 96% 22%;
+    /* --accent: 240 4.8% 95.9%; */
+    --accent: 217 91% 76%;
+    /* --accent-foreground: 240 5.9% 10%; */
+    --accent-foreground: 213 96% 22%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
@@ -34,7 +49,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
-  .dark {
+  /* .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
@@ -59,7 +74,7 @@ body {
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-  }
+  } */
 }
 
 @layer base {

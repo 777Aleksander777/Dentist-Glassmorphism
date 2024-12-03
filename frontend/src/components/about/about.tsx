@@ -13,7 +13,7 @@ export default function About() {
                     <Image src={"https://cdn.prod.website-files.com/66768138db6ea9da85e67429/6686420d4d668dbd46cd5a7c_about-image-01.avif"} alt="About Section Image" width={530} height={611} style={{width: "530px", height: "auto"}}/>
                 </div>
                 <div className="flex flex-col gap-6 justify-end items-start align-end">
-                    <h1 className="text-8xl">
+                    <h1 className="text-8xl text-primary">
                         Smiles make the first impression
                     </h1>
                     <p className="text-md font-bold">

@@ -29,17 +29,12 @@ export default function Hero() {
                     </div>
                 </div>
                 <div className="w-full min-h-full relative">
-                    <Image className="w-full" src={"https://cdn.prod.website-files.com/66768138db6ea9da85e67429/6686420d0445fbb38236ab20_hero-image.avif"} alt="Hero tooth image" width={100} height={100} style={{width: "100%", height: "auto"}}/>
+                    <Image className="w-full" src={"https://cdn.prod.website-files.com/66768138db6ea9da85e67429/6686420d0445fbb38236ab20_hero-image.avif"} alt="Hero tooth image" quality={100} width={100} height={100} style={{width: "100%", height: "auto"}}/>
                 </div>
             </div>
             <div className="w-full max-w-[1800px] min-h-[125px] mx-auto mt-[50px] bg-primary py-[35px] px-[50px] rounded-[50px]">
                 <div>
-                    <div>
 
-                    </div>
-                    <div>
-                        
-                    </div>
                 </div>
             </div>
         </section>

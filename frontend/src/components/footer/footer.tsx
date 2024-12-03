@@ -2,6 +2,8 @@
 
 import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
+import { Button } from "../ui/button";
+import { Input } from "../ui/input";
 
 export default function Footer() {
 
@@ -45,9 +47,26 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="w-full min-h-[500px] flex flex-col justify-between  rounded-[50px] bg-white mt-[100px] mb-[50px] px-12 py-8">
-                <div>
-                    
+            <div className="w-full min-h-[500px] flex flex-col justify-between  rounded-[50px] bg-white mt-[100px] mb-[50px] px-24 py-16">
+                <div className="w-full flex justify-between">
+                    <div>
+                        <Button className="rounded-[30px] mb-[50px] h-[50px]">Logo</Button>
+                        <div className="flex w-full max-w-sm items-center space-x-2">
+                            <Input className="h-[50px] w-[300px]" type="email" placeholder="Email" />
+                            <Button type="submit" className="rounded-[5px] h-[50px]">Subscribe</Button>
+                        </div>
+                    </div>
+                    <div className="flex gap-4 flex-col px-8">
+                        <h4 className="text-lg font-bold text-primary">
+                            Pages
+                        </h4>
+                        <div className="flex flex-col gap-2">
+                            <Link href={"/"}>Home</Link>
+                            <Link href={"/"}>Make an apppontment</Link>
+                            <Link href={"/"}>Contact</Link>
+                            <Link href={"/"}>About</Link>
+                        </div>
+                    </div>
                 </div>
                 <div className="w-full flex flex-col">
                     <Separator className="bg-black my-8 h-[1px]"/>

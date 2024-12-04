@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator"
 export default function Benefits() {
      
     return (
-        <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[50px]">
+        <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[100px]">
             <div className="w-full flex justify-center align-center items-center">
                 <div className="w-1/3 px-8">
                     <h1 className="text-8xl font-bold text-primary mb-8">

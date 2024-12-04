@@ -7,7 +7,7 @@ export default function Expertise() {
 
 
     return (
-        <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[50px]">
+        <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[100px]">
             <div className="">
                 <div className="mb-[50px] w-full flex justify-between align-center items-center">
                     <h2 className="font-bold text-8xl">

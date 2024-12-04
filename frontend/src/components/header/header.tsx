@@ -22,7 +22,7 @@ export default function Header() {
     console.log(pathname);
 
     return(
-        <NavigationMenu className="w-full max-w-[1900px] py-8 px-[50px] mx-auto flex justify-between align-center items-center">
+        <NavigationMenu className="w-full max-w-[1900px] py-8 px-[100px] mx-auto flex justify-between align-center items-center">
             <NavigationMenuLink className="p-2 rounded-[20px] bg-white">
                 Logo
             </NavigationMenuLink>
@@ -30,13 +30,13 @@ export default function Header() {
                     <NavigationMenuLink href="/" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/' ? "bg-secondary" : "bg-white"}`}>
                         Home
                     </NavigationMenuLink>
-                    <NavigationMenuLink href="/two" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/two' ? "bg-secondary" : "bg-white"}`}>
+                    <NavigationMenuLink href="/book-appointment" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/book-appointment' ? "bg-secondary" : "bg-white"}`}>
                         Book Appointment
                     </NavigationMenuLink>
-                    <NavigationMenuLink href="/three" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/three' ? "bg-secondary" : "bg-white"}`}>
+                    <NavigationMenuLink href="/services" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/services' ? "bg-secondary" : "bg-white"}`}>
                         Services
                     </NavigationMenuLink>
-                    <NavigationMenuLink href="/four" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/four' ? "bg-secondary" : "bg-white"}`}>
+                    <NavigationMenuLink href="/about" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/about' ? "bg-secondary" : "bg-white"}`}>
                         About
                     </NavigationMenuLink>
             </NavigationMenuList>

@@ -17,7 +17,7 @@ export default function Testimonials() {
     )
 
     return (
-        <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[50px]">
+        <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[100px]">
             <div className="w-full rounded-[50px] bg-primary p-8 flex flex-col justify-center align-center items-center"> 
                 <h3 className="text-8xl text-white text-center mt-[50px]">What our patients say</h3>
                 <Carousel

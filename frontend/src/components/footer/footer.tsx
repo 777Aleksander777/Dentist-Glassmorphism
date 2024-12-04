@@ -8,7 +8,7 @@ import { Input } from "../ui/input";
 export default function Footer() {
 
     return (
-        <footer className="w-full max-w-[1900px] mx-auto mt-[150px] px-[50px]">
+        <footer className="w-full max-w-[1900px] mx-auto mt-[150px] px-[100px]">
             <div className="w-full flex justify-between align-center items-start">
                 <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
                     <h4 className="text-primary font-bold text-xl">

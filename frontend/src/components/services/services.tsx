@@ -6,7 +6,7 @@ import ServiceCard from "../ui/custom/serviceCard"
 export default function Services() {
 
     return (
-        <section className="w-full max-w-[1900px] mx-auto mt-[150px] z-[-1] px-[100px] relative">
+        <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[100px] relative">
             <div className="">
                 <h2 className="text-6xl text-center font-bold text-primary mb-[50px]">
                     Our services

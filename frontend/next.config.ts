@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.prod.website-files.com",
         pathname: "/**"
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "3001",
+        pathname: "/**"
       }
     ]
   }

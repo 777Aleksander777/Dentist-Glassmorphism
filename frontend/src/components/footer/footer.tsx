@@ -4,8 +4,12 @@ import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { FooterProps } from "@/types/footer";
+import { StrapiImage } from "../utils/strapiImage";
 
-export default function Footer() {
+export default function Footer({ data }: Readonly<FooterProps>) {
+
+    const { logo, footerLinks, address, workingHours, contact } = data;
 
     return (
         <footer className="w-full max-w-[1900px] mx-auto mt-[150px] px-[100px]">
@@ -15,8 +19,7 @@ export default function Footer() {
                         Address
                     </h4>
                     <p className="text-lg">
-                        4th Floor, Plot No.22,145 Murphy<br></br>
-                        Canyon Rd. Las Vegas
+                        {address}
                     </p>
                 </div>
                 <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
@@ -24,9 +27,7 @@ export default function Footer() {
                         Working hours
                     </h4>
                     <p className="text-lg">
-                        Mon-Fri: 10 am-7 pm<br></br>
-                        Sat: 10 am-6 pm<br></br>
-                        Sun: Closed
+                        {workingHours}
                     </p>
                 </div>
                 <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
@@ -34,8 +35,7 @@ export default function Footer() {
                         Contact
                     </h4>
                     <p className="text-lg">
-                        hello@example.com<br></br>
-                        (060) 444 434 444
+                        {contact}
                     </p>
                 </div>
                 <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
@@ -50,7 +50,9 @@ export default function Footer() {
             <div className="w-full min-h-[500px] flex flex-col justify-between  rounded-[50px] bg-white mt-[100px] mb-[50px] px-24 py-16">
                 <div className="w-full flex justify-between">
                     <div>
-                        <Button className="rounded-[30px] mb-[50px] h-[50px]">Logo</Button>
+                        <Button className="rounded-[30px] mb-[50px]">
+                            <StrapiImage src={logo.logoImage.url} alt={logo.logoImage.alternativeText} width={50} height={logo.logoImage.height}/>
+                        </Button>
                         <div className="flex w-full max-w-sm items-center space-x-2">
                             <Input className="h-[50px] w-[300px]" type="email" placeholder="Email" />
                             <Button type="submit" className="rounded-[5px] h-[50px]">Subscribe</Button>
@@ -61,10 +63,12 @@ export default function Footer() {
                             Pages
                         </h4>
                         <div className="flex flex-col gap-2">
-                            <Link href={"/"}>Home</Link>
-                            <Link href={"/"}>Make an apppontment</Link>
+                            {footerLinks?.map((link) => (
+                                <Link key={link.id} href={link.url}>{link.name}</Link>
+                            ))}
+                            {/* <Link href={"/"}>Make an apppontment</Link>
                             <Link href={"/"}>Contact</Link>
-                            <Link href={"/"}>About</Link>
+                            <Link href={"/"}>About</Link> */}
                         </div>
                     </div>
                 </div>

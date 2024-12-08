@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_elements_logos",
+  "info": {
+    "displayName": "logo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "default": "logo"
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "default": "/"
+    },
+    "logoImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

@@ -30,7 +30,7 @@ export default {
     app.customFields.register({
       name: "color",
       pluginId: PLUGIN_ID, // the custom field is created by a color-picker plugin
-      type: "string", // the color will be stored as a string
+      type: "json", // the color will be stored as a string
       intlLabel: {
         id: `${PLUGIN_ID}.color.label`,
         defaultMessage: "Color",

@@ -13,7 +13,7 @@ const register = ({ strapi }: { strapi: Core.Strapi }) => {
   strapi.customFields.register({
     name: "color",
     plugin: "section-type-plugin",
-    type: "string",
+    type: "json",
     // inputSize: {
     //   // optional
     //   default: 4,

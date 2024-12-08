@@ -438,7 +438,6 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
 export interface ApiTestTest extends Struct.SingleTypeSchema {
   collectionName: 'tests';
   info: {
-    description: '';
     displayName: 'test';
     pluralName: 'tests';
     singularName: 'test';
@@ -447,7 +446,7 @@ export interface ApiTestTest extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    colorTest: Schema.Attribute.String &
+    color: Schema.Attribute.JSON &
       Schema.Attribute.CustomField<'plugin::section-type-plugin.color'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

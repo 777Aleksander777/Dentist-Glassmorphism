@@ -85,7 +85,7 @@ import {
 } from '@strapi/design-system';
 import { CaretDown } from '@strapi/icons';
 import { useField, type InputProps, type FieldValue } from '@strapi/strapi/admin';
-// import { HexColorPicker } from 'react-colorful';
+import { HexColorPicker } from 'react-colorful';
 import { useIntl } from 'react-intl';
 import { styled } from 'styled-components';
 
@@ -100,28 +100,28 @@ const ColorPreview = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
-// const ColorPicker = styled(HexColorPicker)`
-//   && {
-//     width: 100%;
-//     aspect-ratio: 1.5;
-//   }
+const ColorPicker = styled(HexColorPicker)`
+  && {
+    width: 100%;
+    aspect-ratio: 1.5;
+  }
 
-//   .react-colorful__pointer {
-//     width: ${({ theme }) => theme.spaces[3]};
-//     height: ${({ theme }) => theme.spaces[3]};
-//   }
+  .react-colorful__pointer {
+    width: ${({ theme }) => theme.spaces[3]};
+    height: ${({ theme }) => theme.spaces[3]};
+  }
 
-//   .react-colorful__saturation {
-//     border-radius: ${({ theme }) => theme.spaces[1]};
-//     border-bottom: none;
-//   }
+  .react-colorful__saturation {
+    border-radius: ${({ theme }) => theme.spaces[1]};
+    border-bottom: none;
+  }
 
-//   .react-colorful__hue {
-//     border-radius: 10px;
-//     height: ${({ theme }) => theme.spaces[3]};
-//     margin-top: ${({ theme }) => theme.spaces[2]};
-//   }
-// `;
+  .react-colorful__hue {
+    border-radius: 10px;
+    height: ${({ theme }) => theme.spaces[3]};
+    margin-top: ${({ theme }) => theme.spaces[2]};
+  }
+`;
 
 const ColorPickerToggle = styled(Button)`
   & > span {
@@ -160,14 +160,28 @@ const Input = React.forwardRef<HTMLButtonElement, ColorPickerInputProps>(
     const [showColorPicker, setShowColorPicker] = React.useState(false);
     const colorPickerButtonRef = React.useRef<HTMLButtonElement>(null!);
     const { formatMessage } = useIntl();
-    const color = value || '#000000';
+    const [col, setCol] = React.useState(value.col || '#000000');
+    const [text, setText] = React.useState(value.text || "HELLO");
+    let color = value.col || '#000000';
 
+    React.useEffect(() => {
+      if(col !== '#ffffff') {
+        setText("HELLO!");
+      }
+      onChange(name, {"col": col, "text": text})
+    }, [col, text])
+    
+    console.log(value.col)
     const composedRefs = useComposedRefs(forwardedRef, colorPickerButtonRef);
 
     return (
       <Field.Root name={name} id={name} error={error} hint={hint} required={required}>
         <Flex direction="column" alignItems="stretch" gap={1}>
-          <Field.Label action={labelAction}>{label}</Field.Label>
+
+          <Field.Label action={labelAction}>
+            {label}
+          </Field.Label>
+
           <Popover.Root onOpenChange={setShowColorPicker}>
             <Popover.Trigger>
               <ColorPickerToggle
@@ -188,7 +202,7 @@ const Input = React.forwardRef<HTMLButtonElement, ColorPickerInputProps>(
                   <ColorPreview color={color} />
                   <Typography
                     style={{ textTransform: 'uppercase' }}
-                    textColor={value ? undefined : 'neutral600'}
+                    textColor={color ? undefined : 'neutral600'}
                     variant="omega"
                   >
                     {color}
@@ -198,7 +212,7 @@ const Input = React.forwardRef<HTMLButtonElement, ColorPickerInputProps>(
               </ColorPickerToggle>
             </Popover.Trigger>
             <ColorPickerPopover sideOffset={4}>
-              {/* <ColorPicker color={color} onChange={(hexValue) => onChange(name, hexValue)} /> */}
+              <ColorPicker color={color} onChange={(hexValue) => setCol(hexValue)} />
               <Flex paddingTop={3} paddingLeft={4} justifyContent="flex-end">
                 <Box paddingRight={2}>
                   <Typography variant="omega" tag="label" textColor="neutral600">
@@ -215,14 +229,24 @@ const Input = React.forwardRef<HTMLButtonElement, ColorPickerInputProps>(
                       defaultMessage: 'Color picker input',
                     })}
                     style={{ textTransform: 'uppercase' }}
-                    value={value}
+                    value={color}
                     placeholder="#000000"
-                    onChange={onChange}
+                    onChange={setCol}
                   />
                 </Field.Root>
               </Flex>
             </ColorPickerPopover>
           </Popover.Root>
+
+          {col === "#ffffff" ? (
+            <Field.Root>
+              <Field.Label>firstName</Field.Label>
+              <Field.Input onChange={(e) => setText(e.currentTarget.value)} value={text} type="text" placeholder="Ted Lasso" />
+            </Field.Root>
+        ) : (
+          <></>
+        )}
+
           <Field.Hint />
           <Field.Error />
         </Flex>

@@ -20,10 +20,10 @@ import { StrapiImage } from "../utils/strapiImage";
 export default function Header({ data }: Readonly<HeaderProps>) {
 
     const { logo, menu_links, cta } = data;
-    console.dir(menu_links, { depth: null })
+    // console.dir(menu_links, { depth: null })
     const pathname = usePathname()
     const [test, isTest] = useState<boolean>(true);
-    console.log(pathname);
+    // console.log(pathname);
 
     return(
         <NavigationMenu className="w-full max-w-[1900px] py-8 px-[100px] mx-auto flex justify-between align-center items-center">

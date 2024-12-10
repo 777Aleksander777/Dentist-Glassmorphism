@@ -412,6 +412,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiHomeHome extends Struct.SingleTypeSchema {
   collectionName: 'homes';
   info: {
+    description: '';
     displayName: 'home';
     pluralName: 'homes';
     singularName: 'home';
@@ -420,6 +421,21 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      [
+        'layout.hero',
+        'layout.benefits-two',
+        'layout.benefits-one',
+        'layout.about',
+        'layout.about-two',
+        'layout.about-three',
+        'layout.about-four',
+        'layout.expertise',
+        'layout.faq',
+        'layout.services',
+        'layout.staff',
+      ]
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -438,6 +454,7 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
 export interface ApiTestTest extends Struct.SingleTypeSchema {
   collectionName: 'tests';
   info: {
+    description: '';
     displayName: 'test';
     pluralName: 'tests';
     singularName: 'test';
@@ -446,8 +463,6 @@ export interface ApiTestTest extends Struct.SingleTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    color: Schema.Attribute.JSON &
-      Schema.Attribute.CustomField<'plugin::section-type-plugin.color'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -455,6 +470,8 @@ export interface ApiTestTest extends Struct.SingleTypeSchema {
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::test.test'> &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    sectionType: Schema.Attribute.JSON &
+      Schema.Attribute.CustomField<'plugin::section-type-plugin.sectionType'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

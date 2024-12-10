@@ -4,16 +4,17 @@
   "info": {
     "singularName": "test",
     "pluralName": "tests",
-    "displayName": "test"
+    "displayName": "test",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "color": {
+    "sectionType": {
       "type": "customField",
-      "customField": "plugin::section-type-plugin.color"
+      "customField": "plugin::section-type-plugin.sectionType"
     }
   }
 }

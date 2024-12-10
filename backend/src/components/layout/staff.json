@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_layout_staff",
+  "info": {
+    "displayName": "staff"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_layout_about_threes",
+  "info": {
+    "displayName": "aboutThree"
+  },
+  "options": {},
+  "attributes": {
+    "titleOne": {
+      "type": "string",
+      "required": true
+    },
+    "descOne": {
+      "type": "text",
+      "required": true
+    },
+    "titleTwo": {
+      "type": "string",
+      "required": true
+    },
+    "descTwo": {
+      "type": "text",
+      "required": true
+    },
+    "img": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "list": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.list",
+      "max": 3,
+      "min": 1,
+      "required": true
+    }
+  }
+}

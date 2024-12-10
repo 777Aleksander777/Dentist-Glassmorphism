@@ -160,18 +160,19 @@ const Input = React.forwardRef<HTMLButtonElement, ColorPickerInputProps>(
     const [showColorPicker, setShowColorPicker] = React.useState(false);
     const colorPickerButtonRef = React.useRef<HTMLButtonElement>(null!);
     const { formatMessage } = useIntl();
-    const [col, setCol] = React.useState(value.col || '#000000');
-    const [text, setText] = React.useState(value.text || "HELLO");
-    let color = value.col || '#000000';
-
+    const [col, setCol] = React.useState(value?.col || '#000000');
+    const [text, setText] = React.useState(value?.text || "HELLO");
+    // const color = col;
+    
     React.useEffect(() => {
+      
       if(col !== '#ffffff') {
         setText("HELLO!");
       }
       onChange(name, {"col": col, "text": text})
+      
     }, [col, text])
-    
-    console.log(value.col)
+
     const composedRefs = useComposedRefs(forwardedRef, colorPickerButtonRef);
 
     return (
@@ -199,20 +200,20 @@ const Input = React.forwardRef<HTMLButtonElement, ColorPickerInputProps>(
                 size="L"
               >
                 <Flex>
-                  <ColorPreview color={color} />
+                  <ColorPreview color={col} />
                   <Typography
                     style={{ textTransform: 'uppercase' }}
-                    textColor={color ? undefined : 'neutral600'}
+                    textColor={col ? undefined : 'neutral600'}
                     variant="omega"
                   >
-                    {color}
+                    {col}
                   </Typography>
                 </Flex>
                 <CaretDown aria-hidden />
               </ColorPickerToggle>
             </Popover.Trigger>
             <ColorPickerPopover sideOffset={4}>
-              <ColorPicker color={color} onChange={(hexValue) => setCol(hexValue)} />
+              <ColorPicker color={col} onChange={(hexValue) => setCol(hexValue)} />
               <Flex paddingTop={3} paddingLeft={4} justifyContent="flex-end">
                 <Box paddingRight={2}>
                   <Typography variant="omega" tag="label" textColor="neutral600">
@@ -229,7 +230,7 @@ const Input = React.forwardRef<HTMLButtonElement, ColorPickerInputProps>(
                       defaultMessage: 'Color picker input',
                     })}
                     style={{ textTransform: 'uppercase' }}
-                    value={color}
+                    value={col}
                     placeholder="#000000"
                     onChange={setCol}
                   />
@@ -241,7 +242,7 @@ const Input = React.forwardRef<HTMLButtonElement, ColorPickerInputProps>(
           {col === "#ffffff" ? (
             <Field.Root>
               <Field.Label>firstName</Field.Label>
-              <Field.Input onChange={(e) => setText(e.currentTarget.value)} value={text} type="text" placeholder="Ted Lasso" />
+              <Field.Input onChange={(e: React.ChangeEvent<HTMLInputElement>) => setText(e.currentTarget.value)} value={text} type="text" placeholder="Ted Lasso" />
             </Field.Root>
         ) : (
           <></>

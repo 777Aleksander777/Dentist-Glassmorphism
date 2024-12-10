@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_layout_abouts",
+  "info": {
+    "displayName": "aboutOne",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "text",
+      "required": true
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link",
+      "required": true
+    }
+  }
+}

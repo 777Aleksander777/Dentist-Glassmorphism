@@ -28,16 +28,16 @@ export default {
     });
 
     app.customFields.register({
-      name: "color",
+      name: "sectionType",
       pluginId: PLUGIN_ID, // the custom field is created by a color-picker plugin
       type: "json", // the color will be stored as a string
       intlLabel: {
-        id: `${PLUGIN_ID}.color.label`,
-        defaultMessage: "Color",
+        id: `${PLUGIN_ID}.sectionType.label`,
+        defaultMessage: "Section Type",
       },
       intlDescription: {
-        id: `${PLUGIN_ID}.color.description`,
-        defaultMessage: "Select some color",
+        id: `${PLUGIN_ID}.sectionType.description`,
+        defaultMessage: "Select type of section",
       },
       // icon: ColorPickerIcon, // don't forget to create/import your icon component
       components: {

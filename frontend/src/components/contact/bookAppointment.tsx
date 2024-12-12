@@ -33,6 +33,12 @@ import { cn } from "@/lib/utils"
 import { CalendarIcon } from "lucide-react"
 import { format } from "date-fns"
 import { Textarea } from "@/components/ui/textarea"
+import { motion, useInView } from "framer-motion";
+import React from "react";
+import { getBuisnessData } from "@/data/loader";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 const formSchema = z.object({
     firstName: z.string().min(3).max(50),
@@ -54,7 +60,9 @@ const formSchema = z.object({
 
 export default function BookAppointment() {
 
- 
+    const [workingHours, setWorkingHours] = React.useState("");
+    const [contact, setContact] = React.useState("");
+    const [address, setAddress] = React.useState("");
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -69,13 +77,57 @@ export default function BookAppointment() {
         },
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    React.useEffect(() => {
+        async function getData() {
+            try {
+                const res: {data: {footer: {address: string, workingHours: string, contact: string}}} = await getBuisnessData();
+                setWorkingHours(res.data.footer.workingHours);
+                setContact(res.data.footer.contact);
+                setAddress(res.data.footer.address);
+
+            } catch (error) {
+                console.log("Cannot get data! " + error)
+            }
+        }
+        getData();
+    })
+
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
+        // sendEmail({email: "email@gmail.com",title: "hello",message: "world!!!"})
+        try {
+            const response = await fetch('/api/send-email', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: values.emailAddress,
+                title: "Wiadomość email do Twojej strony",
+                message: values.message,
+              }),
+            });
+        
+            if (response.ok) {
+              console.log('Email wysłany pomyślnie!');
+            } else {
+              console.error('Błąd podczas wysyłania emaila.');
+            }
+          } catch (error) {
+            console.error(`Błąd: ${error}`);
+          }
         console.log(values)
     }
 
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true });
+
     return (
+        <motion.div
+                ref={ref}
+                initial={{ y: "100px", opacity: 0.1 }} // Start poza ekranem
+                animate={isInView ? { y: 0, opacity: 1 } : {}} // Animuj tylko gdy widoczny
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                >
         <section className="w-full max-w-[1900px] mx-auto mt-[150px] mb-[600px] px-[100px]">
             <div className="relative w-full bg-white flex justify-between p-12 pb-64 rounded-[50px]">
                 <div className="w-2/5">
@@ -168,10 +220,10 @@ export default function BookAppointment() {
                                                         selected={field.value}
                                                         onSelect={field.onChange}
                                                         disabled={(date) =>
-                                                        date < new Date() || date > new Date("2030-01-01")
+                                                            date < new Date() || date > new Date("2030-01-01")
                                                         }
                                                         initialFocus
-                                                    />
+                                                        />
                                                 </PopoverContent>
                                             </Popover>
                                             <FormMessage />
@@ -215,7 +267,7 @@ export default function BookAppointment() {
                                         <FormMessage />
                                         </FormItem>
                                     )}
-                                />
+                                    />
                                 <Button className="bg-secondary text-primary hover:bg-white w-fit h-[50px]" type="submit">Submit</Button>
                             </form>
                         </Form>
@@ -226,29 +278,47 @@ export default function BookAppointment() {
                         <h4 className="text-primary text-lg font-bold">
                             Address:
                         </h4>
+                            <ReactMarkdown 
+                                remarkPlugins={[remarkGfm]}
+                                rehypePlugins={[rehypeRaw]}
+                            >
+                                {workingHours}
+                            </ReactMarkdown>
                         <p className="text-primary text-md">
-                            4th Floor, Plot No.22,145 Murphy Canyon Rd. Las Vegas
+                            {/* 4th Floor, Plot No.22,145 Murphy Canyon Rd. Las Vegas */}
                         </p>
                     </div>
                     <div className="w-2/5 flex flex-col gap-8">
                         <h4 className="text-primary text-lg font-bold">
-                            Support email:
+                            Contact:
                         </h4>
+                            <ReactMarkdown 
+                                remarkPlugins={[remarkGfm]}
+                                rehypePlugins={[rehypeRaw]}
+                            >
+                                {contact}
+                            </ReactMarkdown>
                         <p className="text-primary text-md">
-                            hello@example.com
+                            {/* hello@example.com */}
                         </p>
                     </div>
                     <div className="w-2/5 flex flex-col gap-8">
                         <h4 className="text-primary text-lg font-bold">
-                            Phone number:
+                            Address:
                         </h4>
+                            <ReactMarkdown 
+                                remarkPlugins={[remarkGfm]}
+                                rehypePlugins={[rehypeRaw]}
+                            >
+                                {address}
+                            </ReactMarkdown>
                         <p className="text-primary text-md">
-                            (060) 444 434 444
                         </p>
                     </div>
                 </div>
                 <Image className="w-1/4 absolute top-[150px] right-[-30px]" src={"https://cdn.prod.website-files.com/66768138db6ea9da85e67429/6686420d7e5fdcb30b993732_appointment-hero-image.avif"} alt="Contact Image" width={500} height={500}/>
             </div>
         </section>
+        </motion.div>
     )
 }

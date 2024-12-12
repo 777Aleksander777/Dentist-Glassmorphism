@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "../components/header/header";
 import Footer from "../components/footer/footer";
 import { getGlobalData } from "@/data/loader";
+// import 'ionicons/css/ionicons.min.css';
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",

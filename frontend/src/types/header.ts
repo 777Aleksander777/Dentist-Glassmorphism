@@ -1,18 +1,12 @@
+import { ImageProps } from "./image"
+
 export interface HeaderProps {
     data: {
         logo: {
             id: number,
             url: string,
             name: string,
-            logoImage: {
-                id: number,
-                documentId: string,
-                url: string,
-                name: string,
-                alternativeText: string,
-                width: number,
-                height: number,
-            },
+            logoImage: ImageProps,
         },
         menu_links: [
             {

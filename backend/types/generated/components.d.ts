@@ -31,6 +31,17 @@ export interface ElementsList extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsListTwo extends Struct.ComponentSchema {
+  collectionName: 'components_elements_list_twos';
+  info: {
+    displayName: 'listTwo';
+  };
+  attributes: {
+    img: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ElementsLogo extends Struct.ComponentSchema {
   collectionName: 'components_elements_logos';
   info: {
@@ -266,6 +277,44 @@ export interface LayoutHero extends Struct.ComponentSchema {
   };
 }
 
+export interface LayoutInfoOne extends Struct.ComponentSchema {
+  collectionName: 'components_layout_info_ones';
+  info: {
+    displayName: 'infoOne';
+  };
+  attributes: {
+    list: Schema.Attribute.Component<'elements.list', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+          min: 3;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface LayoutInfoTwo extends Struct.ComponentSchema {
+  collectionName: 'components_layout_info_twos';
+  info: {
+    displayName: 'infoTwo';
+  };
+  attributes: {
+    list: Schema.Attribute.Component<'elements.list-two', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+          min: 3;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface LayoutServices extends Struct.ComponentSchema {
   collectionName: 'components_layout_services';
   info: {
@@ -291,6 +340,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'elements.link': ElementsLink;
       'elements.list': ElementsList;
+      'elements.list-two': ElementsListTwo;
       'elements.logo': ElementsLogo;
       'layout.about': LayoutAbout;
       'layout.about-four': LayoutAboutFour;
@@ -303,6 +353,8 @@ declare module '@strapi/strapi' {
       'layout.footer': LayoutFooter;
       'layout.header': LayoutHeader;
       'layout.hero': LayoutHero;
+      'layout.info-one': LayoutInfoOne;
+      'layout.info-two': LayoutInfoTwo;
       'layout.services': LayoutServices;
       'layout.staff': LayoutStaff;
     }

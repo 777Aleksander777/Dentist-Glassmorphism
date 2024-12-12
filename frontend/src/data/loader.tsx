@@ -23,6 +23,19 @@ async function fetchData(url: string) {
     }
 }
 
+export async function getBuisnessData() {
+
+  const url = new URL("/api/global", baseUrl);
+
+  url.search = qs.stringify({
+    populate: {
+      footer: true
+    }
+  })
+
+  return await fetchData(url.href);
+}
+
 export async function getGlobalData() {
 
     const url = new URL("/api/global", baseUrl);
@@ -150,4 +163,185 @@ export async function getHome() {
     })
 
     return await fetchData(url.href);
+}
+
+export async function getServices() {
+
+  const url = new URL("/api/service", baseUrl);
+
+  url.search = qs.stringify({
+    populate: {
+        blocks: {
+          on: {
+            "layout.hero": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true
+              }
+            },
+            "layout.benefits-one": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true,
+                list: true,
+              }
+            },
+            "layout.benefits-two": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true,
+                list: true,
+              }
+            },
+            "layout.about": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true,
+              }
+            },
+            "layout.about-two": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                list: true,
+              }
+            },
+            "layout.about-three": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                list: true,
+              }
+            },
+            "layout.about-four": {
+              populate: {
+                video: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true,
+                list: true,
+              }
+            },
+            "layout.staff": {
+              populate: '*'
+            },
+            "layout.services": {
+              populate: '*'
+            },
+            "layout.faq": {
+              populate: {
+                list:true,
+              }
+            },
+            "layout.expertise": {
+              populate: {
+                button:true,
+              }
+            },
+          }
+        }
+    }
+  })
+
+  return await fetchData(url.href);
+}
+export async function getAbout() {
+
+  const url = new URL("/api/about", baseUrl);
+
+  url.search = qs.stringify({
+    populate: {
+        blocks: {
+          on: {
+            "layout.hero": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true
+              }
+            },
+            "layout.benefits-one": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true,
+                list: true,
+              }
+            },
+            "layout.benefits-two": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true,
+                list: true,
+              }
+            },
+            "layout.about": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true,
+              }
+            },
+            "layout.about-two": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                list: true,
+              }
+            },
+            "layout.about-three": {
+              populate: {
+                img: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                list: true,
+              }
+            },
+            "layout.about-four": {
+              populate: {
+                video: {
+                  fields: ["url", "alternativeText", "width", "height"]
+                },
+                button: true,
+                list: true,
+              }
+            },
+            "layout.staff": {
+              populate: '*'
+            },
+            "layout.services": {
+              populate: '*'
+            },
+            "layout.faq": {
+              populate: {
+                list:true,
+              }
+            },
+            "layout.expertise": {
+              populate: {
+                button:true,
+              }
+            },
+          }
+        }
+    }
+  })
+
+  return await fetchData(url.href);
 }

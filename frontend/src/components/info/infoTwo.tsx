@@ -7,11 +7,22 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/components/ui/card"
+} from "@/components/ui/card"
+import { motion, useInView } from "framer-motion";
+import React from "react";
 
-export default function Info() {
+export default function InfoTwo() {
+
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true });
 
     return (
+        <motion.div
+                ref={ref}
+                initial={{ y: "100px", opacity: 0.1 }} // Start poza ekranem
+                animate={isInView ? { y: 0, opacity: 1 } : {}} // Animuj tylko gdy widoczny
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                >
         <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[100px] relative">
             <h2 className="text-6xl font-bold text-primary mb-[70px] text-center">
                 Why you should choose us?
@@ -59,5 +70,6 @@ export default function Info() {
                 </Card>
             </div>
         </section>
+        </motion.div>
     )
 }

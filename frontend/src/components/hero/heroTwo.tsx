@@ -2,8 +2,11 @@
 
 import Image from "next/image"
 import { Button } from "../ui/button"
+import { HeroProps } from "@/types/hero"
 
-export default function HeroTwo() {
+export default function HeroTwo({ data }: Readonly<HeroProps>) {
+
+    const {title, desc, button, img} = data
 
     return (
         <section className="w-full max-w-[1900px] mx-auto px-[100px] relative">

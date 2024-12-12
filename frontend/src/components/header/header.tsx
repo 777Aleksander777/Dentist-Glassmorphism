@@ -16,6 +16,7 @@ import { useState } from "react"
 import { usePathname } from 'next/navigation'
 import { HeaderProps } from "@/types/header";
 import { StrapiImage } from "../utils/strapiImage";
+import Image from "next/image";
 
 export default function Header({ data }: Readonly<HeaderProps>) {
 
@@ -30,7 +31,7 @@ export default function Header({ data }: Readonly<HeaderProps>) {
             <NavigationMenuLink className="p-2 rounded-[20px] bg-white">
                 <StrapiImage src={logo.logoImage.url} alt={logo.logoImage.alternativeText} width={50} height={logo.logoImage.height}/>
             </NavigationMenuLink>
-            <NavigationMenuList className="gap-8">
+            <NavigationMenuList className="hidden md:flex gap-8">
                     {menu_links?.map((link) => (
                         <NavigationMenuLink key={link.id} href={link.url} className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === link.url ? "bg-secondary" : "bg-white"}`}>
                             {link.name}
@@ -45,6 +46,16 @@ export default function Header({ data }: Readonly<HeaderProps>) {
                     <NavigationMenuLink href="/about" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/about' ? "bg-secondary" : "bg-white"}`}>
                         About
                     </NavigationMenuLink> */}
+            </NavigationMenuList>
+            <NavigationMenuList className="block md:hidden">
+                <NavigationMenuItem>
+                    <NavigationMenuTrigger>
+                        <Image src="/menu-outline.svg" alt="menu" width={30} height={30}/>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <NavigationMenuLink>Link</NavigationMenuLink>
+                    </NavigationMenuContent>
+                </NavigationMenuItem>
             </NavigationMenuList>
             <NavigationMenuLink href={cta.url} className="p-2 rounded-[20px] bg-white">
                 {cta.name}

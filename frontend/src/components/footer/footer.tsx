@@ -6,6 +6,9 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { FooterProps } from "@/types/footer";
 import { StrapiImage } from "../utils/strapiImage";
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 export default function Footer({ data }: Readonly<FooterProps>) {
 
@@ -18,24 +21,42 @@ export default function Footer({ data }: Readonly<FooterProps>) {
                     <h4 className="text-primary font-bold text-xl">
                         Address
                     </h4>
+                        <ReactMarkdown 
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                        >
+                            {address}
+                        </ReactMarkdown>
                     <p className="text-lg">
-                        {address}
+                        {/* {address} */}
                     </p>
                 </div>
                 <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
                     <h4 className="text-primary font-bold text-xl">
                         Working hours
                     </h4>
+                        <ReactMarkdown 
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                        >
+                            {workingHours}
+                        </ReactMarkdown>
                     <p className="text-lg">
-                        {workingHours}
+                        {/* {workingHours} */}
                     </p>
                 </div>
                 <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
                     <h4 className="text-primary font-bold text-xl">
                         Contact
                     </h4>
+                        <ReactMarkdown 
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                        >
+                            {contact}
+                        </ReactMarkdown>
                     <p className="text-lg">
-                        {contact}
+                        {/* {contact} */}
                     </p>
                 </div>
                 <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">

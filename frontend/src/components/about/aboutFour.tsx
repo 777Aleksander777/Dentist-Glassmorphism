@@ -1,11 +1,24 @@
 "use client";
 
+import { AboutFourProps } from "@/types/about";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { motion, useInView } from "framer-motion";
+import React from "react";
 
-export default function AboutFour() {
+export default function AboutFour({ data }: Readonly<AboutFourProps>) {
+
+    const {title, desc, list, button, video} = data
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true });
 
     return (
+        <motion.div
+                ref={ref}
+                initial={{ y: "100px", opacity: 0.1 }} // Start poza ekranem
+                animate={isInView ? { y: 0, opacity: 1 } : {}} // Animuj tylko gdy widoczny
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                >
         <section className="w-full max-w-[1900px] mt-[100px] mx-auto px-[100px] relative">
             <div className="w-full relative">
                 <div>
@@ -16,48 +29,54 @@ export default function AboutFour() {
                 </div>
                 <div className="w-full bg-primary h-auto rounded-[50px] pt-96 mt-[-200px] flex flex-col gap-8 px-12 pb-12">
                     <h1 className="text-6xl text-white">
-                        Comprehensive dental solutions for every smile
+                        {/* Comprehensive dental solutions for every smile */}
+                        {title}
                     </h1>
                     <div className="flex justify-between align-center items-center">
                         <div className="flex flex-col gap-8 max-w-[50%]">
                             <p className="w-full text-white text-lg">
-                                We are proud to offer a comprehensive range of dental services to meet the diverse needs of our patients. From routine preventive care to advanced restorative treatments and cosmetic enhancements, our experienced dental team is committed to providing personalized care tailored to your unique needs and goals.
+                                {/* We are proud to offer a comprehensive range of dental services to meet the diverse needs of our patients. From routine preventive care to advanced restorative treatments and cosmetic enhancements, our experienced dental team is committed to providing personalized care tailored to your unique needs and goals. */}
+                                {desc}
                             </p>
                             <Button className="w-fit bg-secondary text-white hover:bg-white hover:text-secondary">
-                                Learn more
+                                {/* Learn more */}
+                                {button.name}
                             </Button>
                         </div>
                         <div className="px-8">
                             <ul className="flex flex-wrap justify-end aling-start items-canter gap-8 list-disc list-inside marker:text-secondary">
+                                {list?.map((item) => (
+                                    <li key={item.title} className="text-md text-white max-w-[250px] w-full">
+                                        {item.title}
+                                        <Separator className="bg-white my-4 max-w-[250px] w-full"/>
+                                    </li>
+                                ))}
+                                {/* <li className="text-md text-white max-w-[250px] w-full">
+                                    Preventive dentistry
+                                    <Separator className="bg-white my-4 max-w-[250px] w-full"/>
+                                    </li>
+                                    <li className="text-md text-white max-w-[250px] w-full">
+                                    Preventive dentistry
+                                    <Separator className="bg-white my-4 max-w-[250px] w-full"/>
+                                    </li>
+                                    <li className="text-md text-white max-w-[250px] w-full">
+                                    Preventive dentistry
+                                    <Separator className="bg-white my-4 max-w-[250px] w-full"/>
+                                    </li>
                                 <li className="text-md text-white max-w-[250px] w-full">
                                     Preventive dentistry
                                     <Separator className="bg-white my-4 max-w-[250px] w-full"/>
-                                </li>
-                                <li className="text-md text-white max-w-[250px] w-full">
+                                    </li>
+                                    <li className="text-md text-white max-w-[250px] w-full">
                                     Preventive dentistry
                                     <Separator className="bg-white my-4 max-w-[250px] w-full"/>
-                                </li>
-                                <li className="text-md text-white max-w-[250px] w-full">
-                                    Preventive dentistry
-                                    <Separator className="bg-white my-4 max-w-[250px] w-full"/>
-                                </li>
-                                <li className="text-md text-white max-w-[250px] w-full">
-                                    Preventive dentistry
-                                    <Separator className="bg-white my-4 max-w-[250px] w-full"/>
-                                </li>
-                                <li className="text-md text-white max-w-[250px] w-full">
-                                    Preventive dentistry
-                                    <Separator className="bg-white my-4 max-w-[250px] w-full"/>
-                                </li>
-                                <li className="text-md text-white max-w-[250px] w-full">
-                                    Preventive dentistry
-                                    <Separator className="bg-white my-4 max-w-[250px] w-full"/>
-                                </li>
+                                    </li> */}
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        </motion.div>
     )
 }

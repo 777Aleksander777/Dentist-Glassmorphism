@@ -8,10 +8,21 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
+  import { motion, useInView } from "framer-motion";
+import React from "react";
 
-export default function Info() {
+export default function InfoOne() {
+
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true });
 
     return (
+        <motion.div
+                ref={ref}
+                initial={{ y: "100px", opacity: 0.1 }} // Start poza ekranem
+                animate={isInView ? { y: 0, opacity: 1 } : {}} // Animuj tylko gdy widoczny
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                >
         <section className="w-full max-w-[1900px] mx-auto mt-[150px] px-[50px]">
             <div className="text-8xl font-bold text-primary text-center mb-[50px]">
                 Dental wellness metrics
@@ -60,5 +71,6 @@ export default function Info() {
                 
             </div>
         </section> 
+        </motion.div>
     )
 }

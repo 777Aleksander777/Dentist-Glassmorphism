@@ -7,14 +7,17 @@ import BenefitsTwo from "@/components/benefits/benefitsTwo";
 import Expertise from "@/components/expertise/expertise";
 import FAQ from "@/components/FAQ/FAQ";
 import Hero from "@/components/hero/hero";
-import Info from "@/components/info/info";
+import InfoOne from "@/components/info/info";
 import Services from "@/components/services/services";
 import Staff from "@/components/staff/staff";
+import { getHome } from "@/data/loader";
 import Testimonials from "@/components/testimonials/testimonials";
 import { Button } from "@/components/ui/button";
-import { getHome } from "@/data/loader";
 // import { motion } from "motion/react"
 import * as motion from "motion/react-client"
+import InfoTwo from "@/components/info/infoTwo";
+import BookAppointment from "@/components/contact/bookAppointment";
+import Test from "@/components/text";
 
 
 const blockComponents = {
@@ -53,10 +56,12 @@ export default async function Home() {
       {/* <Hero/>
       <Expertise/>
       <About/>
-      <Info/>
-      <Testimonials/>
       <Benefits/> */}
       {data?.data?.blocks.map(blockRenderer)}
+      <Testimonials/>
+      <InfoOne/>
+      <InfoTwo/>
+      <BookAppointment/>
     </main>
   );
 }

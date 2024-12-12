@@ -10,7 +10,7 @@ export function StrapiImage({
     alt,
     width,
     height,
-}: Readonly<ImageProps> ) {
+}: Readonly<{src: string, alt: string, width: number | null, height: number | null}> ) {
     
     // const imageURL = getStrapiMedia(src);
     // if(!imageURL) return null;
@@ -21,9 +21,14 @@ export function StrapiImage({
     useEffect(() => {
         const fetchImage = async () => {
           // const imageSrc = await getStrapiMedia(src);
-          const imageSrc = await getBackendUrl() + src;
-          console.log("Image src: " + src)
-          setURL(imageSrc);
+          try {
+            const imageSrc = await getBackendUrl() + src;
+
+            // console.log("Image SRC: " + imageSrc);
+            setURL(imageSrc);
+          } catch (error) {
+            console.error(error);
+          }
         };
     
         fetchImage();

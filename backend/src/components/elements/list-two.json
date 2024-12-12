@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_elements_list_twos",
+  "info": {
+    "displayName": "listTwo"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "img": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

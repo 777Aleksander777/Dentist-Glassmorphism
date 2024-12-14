@@ -18,6 +18,7 @@ import * as motion from "motion/react-client"
 import InfoTwo from "@/components/info/infoTwo";
 import BookAppointment from "@/components/contact/bookAppointment";
 import Test from "@/components/text";
+import Contact from "@/components/contact/contact";
 
 
 const blockComponents = {
@@ -58,10 +59,11 @@ export default async function Home() {
       <About/>
       <Benefits/> */}
       {data?.data?.blocks.map(blockRenderer)}
-      <Testimonials/>
+      {/* <Testimonials/>
       <InfoOne/>
       <InfoTwo/>
-      <BookAppointment/>
+      <BookAppointment/> */}
+      <Contact/>
     </main>
   );
 }

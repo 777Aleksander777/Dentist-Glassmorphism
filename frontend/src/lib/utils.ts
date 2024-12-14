@@ -16,3 +16,27 @@ export function cn(...inputs: ClassValue[]) {
 
 //   return data?.publicUrl;
 // };
+
+// export function getImageURL(url:string) {
+
+//   const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+//   useEffect(() => {
+//     async function getImageSrc() {
+//       try {
+//         const imageSrc = await getBackendUrl() + url;
+    
+//         // console.log("Image SRC: " + imageSrc);
+//         setImageUrl(imageSrc)
+//         // return(imageSrc);
+//       } catch (error) {
+//         console.error(error);
+//         // return null;
+//       }
+//     }
+
+//     getImageSrc();
+//   }, [])
+
+//   return imageUrl;
+// } 

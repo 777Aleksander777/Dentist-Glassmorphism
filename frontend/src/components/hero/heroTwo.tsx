@@ -9,17 +9,31 @@ export default function HeroTwo({ data }: Readonly<HeroProps>) {
     const {title, desc, button, img} = data
 
     return (
-        <section className="w-full max-w-[1900px] mx-auto px-[100px] relative">
-            <div className="w-full flex flex-col justify-center align-center items-center gap-12 bg-white rounded-[50px] p-24">
-                <h1 className="text-8xl text-primary font-bold" >
-                    About OralCare
+        <section className={`w-full h-[80vh] flex justify-center align-center`} 
+            // style={{
+            //     backgroundImage: `url('http://localhost:3001/uploads/tooth_Three_4c662ca114.png')`,
+            // }}
+            style={{
+                // backgroundImage: imageUrl ? `url('${imageUrl}')` : undefined,
+                // backgroundSize: "cover",
+                // backgroundPosition: "center",
+            }}
+        >
+            <video className="absolute top-0 left-0 w-full h-full object-cover" autoPlay={true} loop preload="auto" muted>
+                <source src="/video/videoSix.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+            <div className="my-auto px-8 py-12 rounded-[50px] max-w-[800px] w-full h-fit bg-gradient-to-r from-black/20 to-secondary/30 backdrop-blur-xl shadow-2xl flex gap-8 flex-col justify-center align-center items-center">
+                <h1 className="text-4xl md:text-8xl font-bold text-white">
+                    {title}
                 </h1>
-                <p className="text-md text-primary max-w-[400px]">
-                    At our practice, we believe that a healthy smile is the foundation of overall well-being, and we are dedicated to helping our patients achieve and maintain optimal oral health for life.
+                <p className="text-md md:text-lg text-white">
+                    {desc}
                 </p>
-                <Button className="bg-white text-primary hover:bg-secondary">View our services</Button>
+                <Button className="bg-secondary w-[200px]">
+                    {button.name}
+                </Button>
             </div>
-            <Image className="absolute bottom-[-100px] left-8" src={"https://cdn.prod.website-files.com/66768138db6ea9da85e67429/6686420d513c09afde586bc3_about-hero-image.avif"} alt="Hero image" width={500} height={500}/>
         </section>
     )
 }

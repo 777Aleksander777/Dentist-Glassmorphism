@@ -122,23 +122,26 @@ export default function Contact() {
     const isInView = useInView(ref, { once: true });
 
     return (
-        <section ref={ref} className="w-full h-[80vh]  flex flex-col-reverse md:flex-row justify-center aling-center items-center overflow-hidden">
+        <section ref={ref} className="w-full md:min-h-fit md:max-h-max h-max items-stretch flex flex-col-reverse md:flex-row justify-center aling-center items-center overflow-hidden">
             <motion.div
             initial={{ x: "-500px", opacity: 0.1 }} // Start poza ekranem
             animate={isInView ? { x: 0, opacity: 1 } : {}} // Animuj tylko gdy widoczny
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full h-full py-12 bg-primary flex flex-col gap-8 justify-center align-center items-center"
+            className="w-full min-h-full py-12 px-8 bg-primary flex flex-col gap-8 justify-center align-center items-center"
             >
+                <h2 className="text-6xl text-white font-bold">
+                    Contact with us
+                </h2>
                 <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-8">
-                                <div className="flex flex-wrapp gap-8">
+                                <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
                                     control={form.control}
                                     name="firstName"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent w-[250px] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="First Name" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="First Name" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -150,21 +153,21 @@ export default function Contact() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent w-[250px] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Last Name" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Last Name" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                     />
                                 </div>
-                                <div className="flex flex-wrapp gap-8">
+                                <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
                                     control={form.control}
                                     name="emailAddress"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent w-[250px] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Email Address" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Email Address" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -176,7 +179,7 @@ export default function Contact() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent w-[250px] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Phone Number" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Phone Number" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -191,7 +194,7 @@ export default function Contact() {
                                         <FormControl>
                                             <Textarea
                                             placeholder="Message"
-                                            className="resize-none w-full p-4 rounded-[30px] bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
+                                            className="resize-none mx-auto md:w-full w-[90vw] p-4 rounded-[30px] bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
                                             {...field}
                                             />
                                         </FormControl>
@@ -199,7 +202,7 @@ export default function Contact() {
                                         </FormItem>
                                     )}
                                     />
-                                <Button className="bg-secondary  hover:bg-accent w-fit h-[50px]" type="submit">Submit</Button>
+                                <Button className="bg-secondary md:mx-0 mx-auto  hover:bg-accent w-fit h-[50px]" type="submit">Submit</Button>
                             </form>
                         </Form>
             </motion.div>
@@ -207,17 +210,147 @@ export default function Contact() {
             initial={{ x: "500px", opacity: 0.1, }} // Start poza ekranem
             animate={isInView ? { x: 0, opacity: 1, } : {}} // Animuj tylko gdy widoczny
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full h-full py-12 flex flex-col gap-8 justify-center align-center items-center"
+            className="w-full h-full py-12 px-8 bg-white flex flex-col gap-8 justify-center align-center items-center"
             >
-                <h2 className="text-6xl font-bold">
-                        Contact with us
-                    </h2>
-                    <p className="text-lg">
-                        We offer the best dental care in Krosno. If you have any questions don't be shy to ask!
-                    </p>
-                    <Button className="bg-secondary">
-                        Book an appointment
-                    </Button>
+                <h2 className="text-6xl text-primary font-bold">
+                    Book an appointment
+                </h2>
+                <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className=" flex flex-col gap-8 ">
+                                <div className="flex flex-wrap justify-center align-center items-center gap-8">
+                                    <FormField
+                                    control={form.control}
+                                    name="firstName"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="First Name" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                    />
+                                    <FormField
+                                    control={form.control}
+                                    name="lastName"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Last Name" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                    />
+                                </div>
+                                <div className="flex flex-wrap justify-center align-center items-center gap-8">
+                                    <FormField
+                                    control={form.control}
+                                    name="emailAddress"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Email Address" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                    />
+                                    <FormField
+                                    control={form.control}
+                                    name="phoneNumber"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormControl>
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Phone Number" {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                    />
+                                </div>
+                                <div className="flex flex-wrap justify-center align-center items-center gap-8">
+                                    <FormField
+                                    control={form.control}
+                                    name="date"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Popover>
+                                                <PopoverTrigger asChild>
+                                                    <FormControl>
+                                                        <Button
+                                                        variant={"outline"}
+                                                        className={cn(
+                                                            "bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                        >
+                                                            {field.value ? (
+                                                                format(field.value, "PPP")
+                                                            ) : (
+                                                                <span>Pick a date</span>
+                                                            )}
+                                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-100" />
+                                                        </Button>
+                                                    </FormControl>
+                                                </PopoverTrigger>
+                                                <PopoverContent className="w-auto p-0" align="start">
+                                                    <Calendar
+                                                        mode="single"
+                                                        selected={field.value}
+                                                        onSelect={field.onChange}
+                                                        disabled={(date) =>
+                                                            date < new Date() || date > new Date("2030-01-01")
+                                                        }
+                                                        initialFocus
+                                                        />
+                                                </PopoverContent>
+                                            </Popover>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                    />
+                                    <FormField
+                                    control={form.control}
+                                    name="service"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                <FormControl>
+                                                    <SelectTrigger className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold">
+                                                        <SelectValue placeholder="Secect service" />
+                                                    </SelectTrigger>   
+                                                </FormControl>
+                                                <SelectContent>
+                                                    <SelectItem value="service 1">Service 1</SelectItem>
+                                                    <SelectItem value="service 2">Service 2</SelectItem>
+                                                    <SelectItem value="service 3">Service 3</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                    />
+                                </div>
+                                <FormField
+                                    control={form.control}
+                                    name="message"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                        <FormControl>
+                                            <Textarea
+                                            placeholder="Message"
+                                            className="resize-none md:w-full w-[90vw] p-4 rounded-[30px] bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
+                                            {...field}
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                        </FormItem>
+                                    )}
+                                    />
+                                <Button className="bg-secondary text-primary hover:bg-white w-fit h-[50px]" type="submit">Submit</Button>
+                            </form>
+                        </Form>
             </motion.div>
         </section>
     )

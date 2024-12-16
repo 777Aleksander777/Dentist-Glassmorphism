@@ -6,7 +6,7 @@
   },
   "options": {},
   "attributes": {
-    "name": {
+    "nazwa": {
       "type": "string",
       "required": true,
       "default": "link"

@@ -4,23 +4,11 @@ import { ListProps } from "./list"
 
 export type BenefitsOneProps = {
     data: {
-        title: string,
-        desc: string,
-        button: ButtonProps,
-        img: ImageProps,
-        list: [
-            ListProps
-        ]
-    }
-}
-
-export type BenefitsTwoProps = {
-    data: {
-        title: string,
-        button: ButtonProps,
-        img: ImageProps,
-        list: [
-            ListProps
-        ]
+        tytul: string,
+        opis: string,
+        przycisk: ButtonProps,
+        imgs: [
+            ImageProps,  
+        ],
     }
 }

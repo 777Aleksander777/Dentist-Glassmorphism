@@ -1,5 +1,6 @@
 export type ServicesProps = {
     data: {
-        title: string,
+        tytul: string,
+        opis: string
     }
 }

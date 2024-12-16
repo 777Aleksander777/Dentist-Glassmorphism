@@ -76,89 +76,115 @@ export async function getGlobalData() {
 
 export async function getHome() {
 
-    const url = new URL("/api/home", baseUrl);
+    const url = new URL("/api/strona-glowna", baseUrl);
 
     url.search = qs.stringify({
+        // populate: {
+        //     blocks: {
+        //       on: {
+        //         "layout.hero": {
+        //           populate: {
+        //             img: {
+        //               fields: ["url", "alternativeText", "width", "height"]
+        //             },
+        //             button: true
+        //           }
+        //         },
+        //         "layout.benefits-one": {
+        //           populate: {
+        //             img: {
+        //               fields: ["url", "alternativeText", "width", "height"]
+        //             },
+        //             button: true,
+        //             list: true,
+        //           }
+        //         },
+        //         "layout.benefits-two": {
+        //           populate: {
+        //             img: {
+        //               fields: ["url", "alternativeText", "width", "height"]
+        //             },
+        //             button: true,
+        //             list: true,
+        //           }
+        //         },
+        //         "layout.about": {
+        //           populate: {
+        //             img: {
+        //               fields: ["url", "alternativeText", "width", "height"]
+        //             },
+        //             button: true,
+        //           }
+        //         },
+        //         "layout.about-two": {
+        //           populate: {
+        //             img: {
+        //               fields: ["url", "alternativeText", "width", "height"]
+        //             },
+        //             list: true,
+        //           }
+        //         },
+        //         "layout.about-three": {
+        //           populate: {
+        //             img: {
+        //               fields: ["url", "alternativeText", "width", "height"]
+        //             },
+        //             list: true,
+        //           }
+        //         },
+        //         "layout.about-four": {
+        //           populate: {
+        //             video: {
+        //               fields: ["url", "alternativeText", "width", "height"]
+        //             },
+        //             button: true,
+        //             list: true,
+        //           }
+        //         },
+        //         "layout.staff": {
+        //           populate: '*'
+        //         },
+        //         "layout.services": {
+        //           populate: '*'
+        //         },
+        //         "layout.faq": {
+        //           populate: {
+        //             list:true,
+        //           }
+        //         },
+        //         "layout.expertise": {
+        //           populate: {
+        //             button:true,
+        //           }
+        //         },
+        //       }
+        //     }
+        // }
         populate: {
-            blocks: {
-              on: {
-                "layout.hero": {
-                  populate: {
-                    img: {
-                      fields: ["url", "alternativeText", "width", "height"]
-                    },
-                    button: true
-                  }
-                },
-                "layout.benefits-one": {
-                  populate: {
-                    img: {
-                      fields: ["url", "alternativeText", "width", "height"]
-                    },
-                    button: true,
-                    list: true,
-                  }
-                },
-                "layout.benefits-two": {
-                  populate: {
-                    img: {
-                      fields: ["url", "alternativeText", "width", "height"]
-                    },
-                    button: true,
-                    list: true,
-                  }
-                },
-                "layout.about": {
-                  populate: {
-                    img: {
-                      fields: ["url", "alternativeText", "width", "height"]
-                    },
-                    button: true,
-                  }
-                },
-                "layout.about-two": {
-                  populate: {
-                    img: {
-                      fields: ["url", "alternativeText", "width", "height"]
-                    },
-                    list: true,
-                  }
-                },
-                "layout.about-three": {
-                  populate: {
-                    img: {
-                      fields: ["url", "alternativeText", "width", "height"]
-                    },
-                    list: true,
-                  }
-                },
-                "layout.about-four": {
-                  populate: {
-                    video: {
-                      fields: ["url", "alternativeText", "width", "height"]
-                    },
-                    button: true,
-                    list: true,
-                  }
-                },
-                "layout.staff": {
-                  populate: '*'
-                },
-                "layout.services": {
-                  populate: '*'
-                },
-                "layout.faq": {
-                  populate: {
-                    list:true,
-                  }
-                },
-                "layout.expertise": {
-                  populate: {
-                    button:true,
-                  }
-                },
+          video: true,
+          blocks: {
+            on: {
+              "layout.services": {
+                populate: '*'
+              },
+              "layout.benefits": {
+                populate: {
+                  imgs: {
+                    fields: ["url", "alternativeText", "width", "height"]
+                  },
+                  przycisk: true
+                }
+              },
+              "layout.about": {
+                populate: {
+                  img: {
+                    fields: ["url", "alternativeText", "width", "height"]
+                  },
+                  przycisk: true
+                }
               }
             }
+          }
         }
     })
 
@@ -167,89 +193,115 @@ export async function getHome() {
 
 export async function getServices() {
 
-  const url = new URL("/api/service", baseUrl);
+  const url = new URL("/api/strona-uslugi", baseUrl);
 
   url.search = qs.stringify({
+    // populate: {
+    //     blocks: {
+    //       on: {
+    //         "layout.hero": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true
+    //           }
+    //         },
+    //         "layout.benefits-one": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true,
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.benefits-two": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true,
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.about": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true,
+    //           }
+    //         },
+    //         "layout.about-two": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.about-three": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.about-four": {
+    //           populate: {
+    //             video: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true,
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.staff": {
+    //           populate: '*'
+    //         },
+    //         "layout.services": {
+    //           populate: '*'
+    //         },
+    //         "layout.faq": {
+    //           populate: {
+    //             list:true,
+    //           }
+    //         },
+    //         "layout.expertise": {
+    //           populate: {
+    //             button:true,
+    //           }
+    //         },
+    //       }
+    //     }
+    // }
     populate: {
-        blocks: {
-          on: {
-            "layout.hero": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true
-              }
-            },
-            "layout.benefits-one": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true,
-                list: true,
-              }
-            },
-            "layout.benefits-two": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true,
-                list: true,
-              }
-            },
-            "layout.about": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true,
-              }
-            },
-            "layout.about-two": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                list: true,
-              }
-            },
-            "layout.about-three": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                list: true,
-              }
-            },
-            "layout.about-four": {
-              populate: {
-                video: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true,
-                list: true,
-              }
-            },
-            "layout.staff": {
-              populate: '*'
-            },
-            "layout.services": {
-              populate: '*'
-            },
-            "layout.faq": {
-              populate: {
-                list:true,
-              }
-            },
-            "layout.expertise": {
-              populate: {
-                button:true,
-              }
-            },
+      video: true,
+      blocks: {
+        on: {
+          "layout.services": {
+            populate: '*'
+          },
+          "layout.benefits": {
+            populate: {
+              imgs: {
+                fields: ["url", "alternativeText", "width", "height"]
+              },
+              przycisk: true
+            }
+          },
+          "layout.about": {
+            populate: {
+              img: {
+                fields: ["url", "alternativeText", "width", "height"]
+              },
+              przycisk: true
+            }
           }
         }
+      }
     }
   })
 
@@ -257,89 +309,123 @@ export async function getServices() {
 }
 export async function getAbout() {
 
-  const url = new URL("/api/about", baseUrl);
+  const url = new URL("/api/strona-o-nas", baseUrl);
 
   url.search = qs.stringify({
+    // populate: {
+    //     blocks: {
+    //       on: {
+    //         "layout.hero": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true
+    //           }
+    //         },
+    //         "layout.benefits": {
+    //           populate: {
+    //             imgs: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true
+    //           }
+    //         },
+    //         "layout.benefits-one": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true,
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.benefits-two": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true,
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.about": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true,
+    //           }
+    //         },
+    //         "layout.about-two": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.about-three": {
+    //           populate: {
+    //             img: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.about-four": {
+    //           populate: {
+    //             video: {
+    //               fields: ["url", "alternativeText", "width", "height"]
+    //             },
+    //             button: true,
+    //             list: true,
+    //           }
+    //         },
+    //         "layout.staff": {
+    //           populate: '*'
+    //         },
+    //         "layout.services": {
+    //           populate: '*'
+    //         },
+    //         "layout.faq": {
+    //           populate: {
+    //             list:true,
+    //           }
+    //         },
+    //         "layout.expertise": {
+    //           populate: {
+    //             button:true,
+    //           }
+    //         },
+    //       }
+    //     }
+    // }
     populate: {
-        blocks: {
-          on: {
-            "layout.hero": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true
-              }
-            },
-            "layout.benefits-one": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true,
-                list: true,
-              }
-            },
-            "layout.benefits-two": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true,
-                list: true,
-              }
-            },
-            "layout.about": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true,
-              }
-            },
-            "layout.about-two": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                list: true,
-              }
-            },
-            "layout.about-three": {
-              populate: {
-                img: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                list: true,
-              }
-            },
-            "layout.about-four": {
-              populate: {
-                video: {
-                  fields: ["url", "alternativeText", "width", "height"]
-                },
-                button: true,
-                list: true,
-              }
-            },
-            "layout.staff": {
-              populate: '*'
-            },
-            "layout.services": {
-              populate: '*'
-            },
-            "layout.faq": {
-              populate: {
-                list:true,
-              }
-            },
-            "layout.expertise": {
-              populate: {
-                button:true,
-              }
-            },
+      video: true,
+      blocks: {
+        on: {
+          "layout.services": {
+            populate: '*'
+          },
+          "layout.benefits": {
+            populate: {
+              imgs: {
+                fields: ["url", "alternativeText", "width", "height"]
+              },
+              przycisk: true
+            }
+          },
+          "layout.about": {
+            populate: {
+              img: {
+                fields: ["url", "alternativeText", "width", "height"]
+              },
+              przycisk: true
+            }
           }
         }
+      }
     }
   })
 

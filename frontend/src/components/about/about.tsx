@@ -10,7 +10,7 @@ import { getBackendUrl } from "@/lib/utils";
 
 export default function About({ data }: Readonly<AboutOneProps>) {
 
-    const {title, desc, img, button} = data;
+    const {tytul, opis, img, przycisk} = data;
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true });
     
@@ -73,27 +73,27 @@ export default function About({ data }: Readonly<AboutOneProps>) {
         //     </div>
         // </section>
         // </motion.div>
-        <section ref={ref} className="w-full h-[80vh] flex flex-col md:flex-row justify-center aling-center items-center overflow-hidden">
+        <section ref={ref} className="w-full md:h-[80vh] h-screen flex flex-col md:flex-row justify-center aling-center items-center overflow-hidden">
             <motion.div
                 initial={{ x: "-500px", opacity: 0.1, }} // Start poza ekranem
                 animate={isInView ? { x: 0, opacity: 1, } : {}} // Animuj tylko gdy widoczny
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-full h-full py-12 flex flex-col gap-8 justify-center align-center items-center"
+                className="w-full h-full py-12 px-8 bg-white flex flex-col gap-8 justify-center align-center items-center"
             >
-                    <h2 className="text-6xl font-bold">
-                        {title}
+                    <h2 className="text-6xl font-bold text-center">
+                        {tytul}
                     </h2>
-                    <p className="text-lg">
-                        {desc}
+                    <p className="text-lg text-center">
+                        {opis}
                     </p>
                     <Button>
-                        {button.name}
+                        {przycisk.nazwa}
                     </Button>
             </motion.div>
-            <motion.div className="w-full h-full"
+            <motion.div className="w-full h-full px-8 bg-no-repeat bg-primary/20"
                 style={{
                     backgroundImage: imageUrl ? `url('${imageUrl}')` : undefined,
-                    backgroundSize: "cover",
+                    backgroundSize: "contain",
                     backgroundPosition: "center",
                 }}
                 initial={{ x: "500px", opacity: 0.1 }} // Start poza ekranem

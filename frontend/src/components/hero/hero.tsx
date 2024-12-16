@@ -15,7 +15,7 @@ import { getBackendUrl } from "@/lib/utils";
 
 export default function Hero({ data }: Readonly<HeroProps>) {
 
-    const {title, desc, button, img, type} = data
+    const {tytul, opis, video} = data
 
     const ref = React.useRef(null);
     const [workingHours, setWorkingHours] = React.useState("");
@@ -30,7 +30,7 @@ export default function Hero({ data }: Readonly<HeroProps>) {
         async function loadImageUrl() {
             try {
                 const url = await getBackendUrl();
-                const image = url + img.url
+                const image = url + video.url
                 setImageUrl(image);
                 console.log(`Image URL: ${image}`);
             } catch (error) {
@@ -142,7 +142,7 @@ export default function Hero({ data }: Readonly<HeroProps>) {
         //     )
         // }
         // </>
-        <section className={`w-full h-[80vh] flex justify-center align-center`} 
+        <section className={`relative w-full h-[calc(100vh-100px)] flex justify-center align-center`} 
             // style={{
             //     backgroundImage: `url('http://localhost:3001/uploads/tooth_Three_4c662ca114.png')`,
             // }}
@@ -153,18 +153,18 @@ export default function Hero({ data }: Readonly<HeroProps>) {
             }}
         >
             <video className="absolute top-0 left-0 w-full h-full object-cover" autoPlay={true} loop preload="auto" muted>
-                <source src="/video/videoSix.mp4" type="video/mp4" />
+                <source src={imageUrl} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <div className="my-auto px-8 py-12 rounded-[50px] max-w-[800px] w-full h-fit bg-gradient-to-r from-black/20 to-secondary/30 backdrop-blur-xl shadow-2xl flex gap-8 flex-col justify-center align-center items-center">
-                <h1 className="text-4xl md:text-8xl font-bold text-white">
-                    {title}
+            <div className="my-auto px-8 py-12 rounded-[50px] border-[1px] border-gray-400 max-w-[800px] w-full h-fit bg-gradient-to-r from-black/20 to-accent/30 backdrop-blur-md shadow-2xl flex gap-8 flex-col justify-center align-center items-center">
+                <h1 className="text-4xl md:text-6xl font-bold text-white">
+                    {tytul}
                 </h1>
                 <p className="text-md md:text-lg text-white">
-                    {desc}
+                    {opis}
                 </p>
                 <Button className="bg-secondary w-[200px]">
-                    {button.name}
+                    Umów się na wizytę
                 </Button>
             </div>
         </section>

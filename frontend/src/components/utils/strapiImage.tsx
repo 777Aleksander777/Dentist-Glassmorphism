@@ -8,9 +8,10 @@ import { getBackendUrl } from "@/lib/utils";
 export function StrapiImage({
     src,
     alt,
-    width,
-    height,
-}: Readonly<{src: string, alt: string, width: number | null, height: number | null}> ) {
+    width = 100,
+    height = 100,
+    isCover = true,
+}: Readonly<{src: string, alt: string, width?: number, height?: number, isCover?: boolean}> ) {
     
     // const imageURL = getStrapiMedia(src);
     // if(!imageURL) return null;
@@ -37,6 +38,6 @@ export function StrapiImage({
       if (!url) return null // Obsługa ładowania
 
     return (
-        <Image className="object-scale-down h-full m-auto" src={url} alt={alt || ""} width={width || undefined} height={height || undefined}/> 
+        <Image className={`${isCover ? 'object-cover object-center': ''}  min-w-full aspect-auto  min-h-full m-0`} src={url} alt={alt || ""} width={width} height={height}/> 
     )
 }

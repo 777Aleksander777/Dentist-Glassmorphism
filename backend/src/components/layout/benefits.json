@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_layout_benefits",
+  "info": {
+    "displayName": "sekcja galeria",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "tytul": {
+      "type": "string",
+      "required": true
+    },
+    "opis": {
+      "type": "text",
+      "required": true
+    },
+    "imgs": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "przycisk": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.link",
+      "required": true
+    }
+  }
+}

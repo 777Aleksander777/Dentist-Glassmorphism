@@ -15,9 +15,9 @@ export default function Footer({ data }: Readonly<FooterProps>) {
     const { logo, footerLinks, address, workingHours, contact } = data;
 
     return (
-        <footer className="w-full max-w-[1900px] mx-auto mt-[150px] px-[100px]">
-            <div className="w-full flex justify-between align-center items-start">
-                <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
+        <footer className="w-full mt-[150px]">
+            <div className="w-full flex flex-col md:flex-row md:justify-evenly justify-center align-center md:items-start items:center md:gap-0 gap-8">
+                <div className="max-w[250px] flex flex-col md:justify-start justify-center md:align-start align-center md:items-start items-center gap-4">
                     <h4 className="text-primary font-bold text-xl">
                         Address
                     </h4>
@@ -31,7 +31,7 @@ export default function Footer({ data }: Readonly<FooterProps>) {
                         {/* {address} */}
                     </p>
                 </div>
-                <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
+                <div className="max-w[250px] flex flex-col md:justify-start justify-center md:align-start align-center md:items-start items-center gap-4">
                     <h4 className="text-primary font-bold text-xl">
                         Working hours
                     </h4>
@@ -45,7 +45,7 @@ export default function Footer({ data }: Readonly<FooterProps>) {
                         {/* {workingHours} */}
                     </p>
                 </div>
-                <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
+                <div className="max-w[250px] flex flex-col md:justify-start justify-center md:align-start align-center md:items-start items-center gap-4">
                     <h4 className="text-primary font-bold text-xl">
                         Contact
                     </h4>
@@ -59,7 +59,7 @@ export default function Footer({ data }: Readonly<FooterProps>) {
                         {/* {contact} */}
                     </p>
                 </div>
-                <div className="max-w[250px] flex flex-col justify-start align-start items-start gap-4">
+                <div className="max-w[250px] flex flex-col md:justify-start justify-center md:align-start align-center md:items-start items-center gap-4">
                     <h4 className="text-primary font-bold text-xl">
                         Social media
                     </h4>
@@ -68,14 +68,14 @@ export default function Footer({ data }: Readonly<FooterProps>) {
                     </div>
                 </div>
             </div>
-            <div className="w-full min-h-[500px] flex flex-col justify-between  rounded-[50px] bg-white mt-[100px] mb-[50px] px-24 py-16">
-                <div className="w-full flex justify-between">
-                    <div>
-                        <Button className="rounded-[30px] mb-[50px]">
-                            <StrapiImage src={logo.logoImage.url} alt={logo.logoImage.alternativeText} width={50} height={logo.logoImage.height}/>
+            <div className="w-full min-h-[500px] flex flex-col justify-between  bg-white mt-[100px] md:px-24 py-16">
+                <div className="w-full flex flex-col md:flex-row md:justify-between justify-center">
+                    <div className="flex flex-col justify-center md:justify-start ">
+                        <Button className="w-fit rounded-[30px] mb-[50px] bg-contain bg-transparent hover:bg-black/10">
+                            <StrapiImage src={logo.logoImage.url} alt={logo.logoImage.alternativeText} width={80} height={(logo.logoImage.height as number)}/>
                         </Button>
-                        <div className="flex w-full max-w-sm items-center space-x-2">
-                            <Input className="h-[50px] w-[300px]" type="email" placeholder="Email" />
+                        <div className="flex flex-wrap w-full max-w-sm justify-center items-center space-x-2 space-y-4  mb-[50px]">
+                            <Input className="h-[50px] max-w-[300px] w-full" type="email" placeholder="Email" />
                             <Button type="submit" className="rounded-[5px] h-[50px]">Subscribe</Button>
                         </div>
                     </div>
@@ -95,16 +95,16 @@ export default function Footer({ data }: Readonly<FooterProps>) {
                 </div>
                 <div className="w-full flex flex-col">
                     <Separator className="bg-black my-8 h-[1px]"/>
-                    <div className="w-full flex justify-between">
+                    <div className="w-full flex justify-between ">
                         <div className="flex gap-4">
-                            <Link href={"/"}>
+                            <Link href={"/"} className="text-center">
                                 Privacy Policy
                             </Link>
-                            <Link href={"/"}>
+                            <Link href={"/"} className="text-center">
                                 Terms of srvice
                             </Link>
                         </div>
-                        <div>
+                        <div className="text-center">
                             Designed by Web Desing Agency!
                         </div>
                     </div>

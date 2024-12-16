@@ -7,6 +7,7 @@ import BenefitsTwo from "@/components/benefits/benefitsTwo";
 import Expertise from "@/components/expertise/expertise";
 import FAQ from "@/components/FAQ/FAQ";
 import Hero from "@/components/hero/hero";
+import HeroTwo from "@/components/hero/heroTwo";
 import Info from "@/components/info/info";
 import Services from "@/components/services/services";
 import Staff from "@/components/staff/staff";
@@ -14,17 +15,9 @@ import { getServices } from "@/data/loader";
 
 
 const blockComponents = {
-    "layout.hero": Hero,
     "layout.about": About,
-    "layout.about-two": AboutTwo,
-    "layout.about-three": AboutThree,
-    "layout.about-four": AboutFour,
-    "layout.benefits-one": Benefits,
-    "layout.benefits-two": BenefitsTwo,
-    "layout.staff": Staff,
+    "layout.benefits": Benefits,
     "layout.services": Services,
-    "layout.expertise": Expertise,
-    "layout.faq": FAQ,
 }
   
 function blockRenderer(block: any) {
@@ -45,8 +38,9 @@ export default async function ServicesPage() {
     }
 
     return (
-        <main>
-            {data?.data?.blocks.map(blockRenderer)}
+        <main className="pt-[100px]">
+            <HeroTwo data={{tytul: data.data?.tytul, opis: data.data?.opis, video: data.data?.video}}/>
+            {/* {data?.data?.blocks.map(blockRenderer)} */}
         </main>
     )
 }

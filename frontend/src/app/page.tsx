@@ -22,17 +22,9 @@ import Contact from "@/components/contact/contact";
 
 
 const blockComponents = {
-  "layout.hero": Hero,
+  "layout.benefits": Benefits,
   "layout.about": About,
-  "layout.about-two": AboutTwo,
-  "layout.about-three": AboutThree,
-  "layout.about-four": AboutFour,
-  "layout.benefits-one": Benefits,
-  "layout.benefits-two": BenefitsTwo,
-  "layout.staff": Staff,
   "layout.services": Services,
-  "layout.expertise": Expertise,
-  "layout.faq": FAQ,
 }
 
 function blockRenderer(block: any) {
@@ -53,11 +45,12 @@ export default async function Home() {
   }
 
   return (
-    <main className="">
+    <main className="pt-[100px]">
       {/* <Hero/>
       <Expertise/>
       <About/>
       <Benefits/> */}
+      <Hero data={{tytul: data.data?.tytul, opis: data.data?.opis, video: data.data?.video}}/>
       {data?.data?.blocks.map(blockRenderer)}
       {/* <Testimonials/>
       <InfoOne/>

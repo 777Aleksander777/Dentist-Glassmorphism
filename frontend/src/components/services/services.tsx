@@ -8,7 +8,7 @@ import React from "react";
 
 export default function Services({ data }: Readonly<ServicesProps>) {
 
-    const {title} = data;
+    const { tytul, opis} = data;
     const ref = React.useRef(null); 
     const isInView = useInView(ref, { once: true });
 
@@ -20,10 +20,13 @@ export default function Services({ data }: Readonly<ServicesProps>) {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 >
         <section className="w-full max-w-[1900px] mx-auto my-[150px] px-[100px] relative">
-            <div className="">
-                <h2 className="text-6xl text-center font-bold text-primary mb-[50px]">
-                    {title}
+            <div className="mb-[50px]">
+                <h2 className="text-6xl text-center font-bold text-primary">
+                    {tytul}
                 </h2>
+                <p className="text-primary text-lg text-center">
+                    {opis}
+                </p>
             </div>
             <div className="w-full flex flex-wrap justify-center align-center items-center gap-12">
                 <ServiceCard/>

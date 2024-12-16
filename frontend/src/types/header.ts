@@ -12,14 +12,14 @@ export interface HeaderProps {
             {
                 id: number,
                 url: string,
-                name: string,
+                nazwa: string,
                 isExternal: boolean,
             },
         ],
         cta: {
             id: number,
             url: string,
-            name: string,
+            nazwa: string,
             isExternal: boolean,
         },
     }

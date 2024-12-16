@@ -1,16 +1,16 @@
 {
   "collectionName": "components_layout_abouts",
   "info": {
-    "displayName": "aboutOne",
+    "displayName": "sekcja informacyjna",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "title": {
+    "tytul": {
       "type": "string",
       "required": true
     },
-    "desc": {
+    "opis": {
       "type": "text",
       "required": true
     },
@@ -22,7 +22,7 @@
         "images"
       ]
     },
-    "button": {
+    "przycisk": {
       "type": "component",
       "repeatable": false,
       "component": "elements.link",

@@ -1,0 +1,38 @@
+{
+  "kind": "singleType",
+  "collectionName": "strona_o_nass",
+  "info": {
+    "singularName": "strona-o-nas",
+    "pluralName": "strona-o-nass",
+    "displayName": "Strona o nas"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tytul": {
+      "type": "string",
+      "required": true
+    },
+    "opis": {
+      "type": "text"
+    },
+    "video": {
+      "allowedTypes": [
+        "videos"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "layout.services",
+        "layout.benefits",
+        "layout.about"
+      ]
+    }
+  }
+}

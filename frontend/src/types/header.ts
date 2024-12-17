@@ -8,18 +8,18 @@ export interface HeaderProps {
             name: string,
             logoImage: ImageProps,
         },
-        menu_links: [
+        headerLinks: [
             {
                 id: number,
                 url: string,
-                nazwa: string,
+                name: string,
                 isExternal: boolean,
             },
         ],
         cta: {
             id: number,
             url: string,
-            nazwa: string,
+            name: string,
             isExternal: boolean,
         },
     }

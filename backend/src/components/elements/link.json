@@ -1,15 +1,13 @@
 {
   "collectionName": "components_elements_links",
   "info": {
-    "displayName": "link",
-    "description": ""
+    "displayName": "link"
   },
   "options": {},
   "attributes": {
-    "nazwa": {
+    "name": {
       "type": "string",
-      "required": true,
-      "default": "link"
+      "required": true
     },
     "url": {
       "type": "string",

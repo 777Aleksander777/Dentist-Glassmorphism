@@ -5,9 +5,9 @@ import { VideoProps } from "./video"
 
 export type AboutOneProps = {
     data: {
-        tytul: string,
-        opis: string,
+        title: string,
+        desc: string,
         img: ImageProps,
-        przycisk: ButtonProps
+        button: ButtonProps
     }
 }

@@ -51,7 +51,7 @@ export async function getGlobalData() {
                             }
                         }
                     },
-                    menu_links: true,
+                    headerLinks: true,
                     cta: true,
                 }
             },
@@ -76,7 +76,7 @@ export async function getGlobalData() {
 
 export async function getHome() {
 
-    const url = new URL("/api/strona-glowna", baseUrl);
+    const url = new URL("/api/home-page", baseUrl);
 
     url.search = qs.stringify({
         // populate: {
@@ -164,23 +164,31 @@ export async function getHome() {
           video: true,
           blocks: {
             on: {
-              "layout.services": {
-                populate: '*'
+              "layout.cards-section": {
+                populate: {
+                  carts: {
+                    populate: {
+                      img: {
+                        fields: ["url", "alternativeText", "width", "height"]
+                      }
+                    }
+                  }
+                }
               },
-              "layout.benefits": {
+              "layout.gallery-section": {
                 populate: {
                   imgs: {
                     fields: ["url", "alternativeText", "width", "height"]
                   },
-                  przycisk: true
+                  button: true
                 }
               },
-              "layout.about": {
+              "layout.info-section": {
                 populate: {
                   img: {
                     fields: ["url", "alternativeText", "width", "height"]
                   },
-                  przycisk: true
+                  button: true
                 }
               }
             }
@@ -193,7 +201,7 @@ export async function getHome() {
 
 export async function getServices() {
 
-  const url = new URL("/api/strona-uslugi", baseUrl);
+  const url = new URL("/api/services-page", baseUrl);
 
   url.search = qs.stringify({
     // populate: {
@@ -281,23 +289,31 @@ export async function getServices() {
       video: true,
       blocks: {
         on: {
-          "layout.services": {
-            populate: '*'
+          "layout.cards-section": {
+            populate: {
+              carts: {
+                populate: {
+                  img: {
+                    fields: ["url", "alternativeText", "width", "height"]
+                  }
+                }
+              }
+            }
           },
-          "layout.benefits": {
+          "layout.gallery-section": {
             populate: {
               imgs: {
                 fields: ["url", "alternativeText", "width", "height"]
               },
-              przycisk: true
+              button: true
             }
           },
-          "layout.about": {
+          "layout.info-section": {
             populate: {
               img: {
                 fields: ["url", "alternativeText", "width", "height"]
               },
-              przycisk: true
+              button: true
             }
           }
         }
@@ -309,7 +325,7 @@ export async function getServices() {
 }
 export async function getAbout() {
 
-  const url = new URL("/api/strona-o-nas", baseUrl);
+  const url = new URL("/api/about-page", baseUrl);
 
   url.search = qs.stringify({
     // populate: {
@@ -405,23 +421,31 @@ export async function getAbout() {
       video: true,
       blocks: {
         on: {
-          "layout.services": {
-            populate: '*'
+          "layout.cards-section": {
+            populate: {
+              carts: {
+                populate: {
+                  img: {
+                    fields: ["url", "alternativeText", "width", "height"]
+                  }
+                }
+              }
+            }
           },
-          "layout.benefits": {
+          "layout.gallery-section": {
             populate: {
               imgs: {
                 fields: ["url", "alternativeText", "width", "height"]
               },
-              przycisk: true
+              button: true
             }
           },
-          "layout.about": {
+          "layout.info-section": {
             populate: {
               img: {
                 fields: ["url", "alternativeText", "width", "height"]
               },
-              przycisk: true
+              button: true
             }
           }
         }
@@ -430,4 +454,20 @@ export async function getAbout() {
   })
 
   return await fetchData(url.href);
+}
+
+export async function getOffers() {
+
+  const url = new URL('/api/uslugis', baseUrl);
+
+  url.search = qs.stringify({
+    populate: {
+      img: {
+        fields: ["url", "alternativeText", "width", "height"]
+      }
+    }
+  })
+
+  return await fetchData(url.href);
+
 }

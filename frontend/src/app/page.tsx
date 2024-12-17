@@ -22,9 +22,9 @@ import Contact from "@/components/contact/contact";
 
 
 const blockComponents = {
-  "layout.benefits": Benefits,
-  "layout.about": About,
-  "layout.services": Services,
+  "layout.gallery-section": Benefits,
+  "layout.info-section": About,
+  "layout.cards-section": Services,
 }
 
 function blockRenderer(block: any) {
@@ -50,7 +50,7 @@ export default async function Home() {
       <Expertise/>
       <About/>
       <Benefits/> */}
-      <Hero data={{tytul: data.data?.tytul, opis: data.data?.opis, video: data.data?.video}}/>
+      <Hero data={{tytul: data.data?.title, opis: data.data?.desc, video: data.data?.video}}/>
       {data?.data?.blocks.map(blockRenderer)}
       {/* <Testimonials/>
       <InfoOne/>

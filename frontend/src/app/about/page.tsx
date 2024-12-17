@@ -15,9 +15,9 @@ import { getAbout } from "@/data/loader";
 
 
 const blockComponents = {
-    "layout.about": About,
-    "layout.services": Services,
-    "layout.benefits": Benefits,
+    "layout.gallery-section": Benefits,
+    "layout.info-section": About,
+    "layout.cards-section": Services,
 }
   
 function blockRenderer(block: any) {
@@ -39,7 +39,7 @@ export default async function AboutPage() {
 
     return (
         <main className="pt-[100px]">
-            <HeroTwo data={{tytul: data.data?.tytul, opis: data.data?.opis, video: data.data?.video}}/>
+            <HeroTwo data={{tytul: data.data?.title, opis: data.data?.desc, video: data.data?.video}}/>
             {data?.data?.blocks.map(blockRenderer)}
         </main>
     )

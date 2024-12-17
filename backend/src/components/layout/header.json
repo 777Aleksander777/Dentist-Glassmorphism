@@ -6,14 +6,12 @@
   "options": {},
   "attributes": {
     "logo": {
-      "displayName": "logo",
       "type": "component",
       "repeatable": false,
       "component": "elements.logo",
       "required": true
     },
-    "menu_links": {
-      "displayName": "link",
+    "headerLinks": {
       "type": "component",
       "repeatable": true,
       "component": "elements.link",

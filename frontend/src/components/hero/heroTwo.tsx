@@ -51,11 +51,11 @@ export default function HeroTwo({ data }: Readonly<HeroProps>) {
                 // backgroundPosition: "center",
             }}
         >
-            <div className="my-auto px-8 md:py-12 py-24 w-full h-full bg-white h-fit flex gap-8 flex-col justify-center align-center items-center">
+            <div className="my-auto px-8 md:py-12 py-24 w-full h-full bg-white h-fit flex gap-8 flex-col justify-center align-center md:items-start items-center">
                 <h1 className="text-4xl md:text-8xl font-bold text-primary">
                     {tytul}
                 </h1>
-                <p className="text-md md:text-lg text-primary">
+                <p className="text-md md:text-lg text-primary md:text-start text-center">
                     {opis} 
                 </p>
                 <Button className="bg-secondary w-[200px]">

@@ -9,15 +9,16 @@ import FAQ from "@/components/FAQ/FAQ";
 import Hero from "@/components/hero/hero";
 import HeroTwo from "@/components/hero/heroTwo";
 import Info from "@/components/info/info";
+import Offers from "@/components/services/offers";
 import Services from "@/components/services/services";
 import Staff from "@/components/staff/staff";
-import { getServices } from "@/data/loader";
+import { getOffers, getServices } from "@/data/loader";
 
 
 const blockComponents = {
-    "layout.about": About,
-    "layout.benefits": Benefits,
-    "layout.services": Services,
+    "layout.gallery-section": Benefits,
+    "layout.info-section": About,
+    "layout.cards-section": Services,
 }
   
 function blockRenderer(block: any) {
@@ -28,10 +29,13 @@ function blockRenderer(block: any) {
 export default async function ServicesPage() {
 
     let data;
+    let offers;
   
     try {
         data = await getServices();
+        offers = await getOffers();
         console.dir(data.data, { depth: null });
+        console.dir(offers.data, { depth: null });
     } catch (error) {
         console.error("Cannot get Home Page data!", error);
         throw error; // Opcjonalnie, aby komponent wyświetlił błąd.
@@ -39,8 +43,9 @@ export default async function ServicesPage() {
 
     return (
         <main className="pt-[100px]">
-            <HeroTwo data={{tytul: data.data?.tytul, opis: data.data?.opis, video: data.data?.video}}/>
-            {/* {data?.data?.blocks.map(blockRenderer)} */}
+            <HeroTwo data={{tytul: data.data?.title, opis: data.data?.desc, video: data.data?.video}}/>
+            <Offers data={offers.data}/>
+            {data?.data?.blocks.map(blockRenderer)}
         </main>
     )
 }

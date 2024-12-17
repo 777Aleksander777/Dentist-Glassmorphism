@@ -19,7 +19,7 @@ import Autoplay from "embla-carousel-autoplay"
 
 export default function Benefits({ data }: Readonly<BenefitsOneProps>) {
      
-    const {tytul, opis, przycisk, imgs} = data;
+    const {title, desc, button, imgs} = data;
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true});
 
@@ -73,17 +73,19 @@ export default function Benefits({ data }: Readonly<BenefitsOneProps>) {
                 initial={{ x: "-500px", opacity: 0.1, }} // Start poza ekranem
                 animate={isInView ? { x: 0, opacity: 1, } : {}} // Animuj tylko gdy widoczny
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-full h-full py-12 px-8 md:px-0 bg-white flex flex-col gap-8 justify-center align-center items-center"
+                className="w-full h-full py-12 bg-white "
             >
+                <div className="w-full h-full px-8 flex flex-col gap-8 justify-center align-center md:items-end items-center">
                     <h2 className="text-6xl font-bold text-center">
-                        {tytul}
+                        {title}
                     </h2>
                     <p className="text-lg text-center">
-                        {opis}
+                        {desc}
                     </p>
                     <Button>
-                        {przycisk.nazwa}
+                        {button.name}
                     </Button>
+                </div>
             </motion.div>
             <motion.div className="w-full h-full px-0 bg-no-repeat bg-primary/20"
                 style={{

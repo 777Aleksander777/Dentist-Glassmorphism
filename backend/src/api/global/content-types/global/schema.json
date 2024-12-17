@@ -12,11 +12,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "web_title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "web_desc": {
+    "desc": {
       "type": "text",
       "required": true
     },
@@ -24,8 +24,7 @@
       "type": "component",
       "repeatable": false,
       "component": "layout.header",
-      "required": true,
-      "max": 0
+      "required": true
     },
     "footer": {
       "type": "component",

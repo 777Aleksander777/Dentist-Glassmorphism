@@ -130,7 +130,7 @@ export default function Contact() {
             className="w-full min-h-full py-12 px-8 bg-primary flex flex-col gap-8 justify-center align-center items-center"
             >
                 <h2 className="text-6xl text-white font-bold">
-                    Contact with us
+                    Skontaktuj się z nami
                 </h2>
                 <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-8">
@@ -213,7 +213,7 @@ export default function Contact() {
             className="w-full h-full py-12 px-8 bg-white flex flex-col gap-8 justify-center align-center items-center"
             >
                 <h2 className="text-6xl text-primary font-bold">
-                    Book an appointment
+                    Umów się na wizytę
                 </h2>
                 <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className=" flex flex-col gap-8 ">

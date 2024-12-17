@@ -20,7 +20,7 @@ import Image from "next/image";
 
 export default function Header({ data }: Readonly<HeaderProps>) {
 
-    const { logo, menu_links, cta } = data;
+    const { logo, headerLinks, cta } = data;
     const [isPhone, setIsPhone] = useState<boolean>(false);
     // console.dir(menu_links, { depth: null })
     const pathname = usePathname()
@@ -49,9 +49,9 @@ export default function Header({ data }: Readonly<HeaderProps>) {
             </NavigationMenuLink>
             {!isPhone && (
             <NavigationMenuList>
-                    {menu_links?.map((link) => (
+                    {headerLinks?.map((link) => (
                         <NavigationMenuLink key={link.id} href={link.url} className={`py-2 px-4 rounded-[20px] text-xl font-bold hover:text-secondary ${pathname === link.url ? "text-secondary" : "text-white"}`}>
-                            {link.nazwa}
+                            {link.name}
                         </NavigationMenuLink>
                     ))}
                     {/* <NavigationMenuLink href="/book-appointment" className={`py-2 px-4 rounded-[20px] text-muted-foreground font-bold hover:bg-secondary ${pathname === '/book-appointment' ? "bg-secondary" : "bg-white"}`}>
@@ -73,9 +73,9 @@ export default function Header({ data }: Readonly<HeaderProps>) {
                         </NavigationMenuTrigger>
                         <NavigationMenuContent className="left-1/2 flex flex-col gap-8 px-4 py-8">
                             {/* <NavigationMenuLink>Link</NavigationMenuLink> */}
-                            {menu_links?.map((link) => (
+                            {headerLinks?.map((link) => (
                                 <NavigationMenuLink key={link.id} href={link.url} className={`py-2 px-4 rounded-[20px] text-xl font-bold hover:text-secondary ${pathname === link.url ? "text-secondary" : "text-black"}`}>
-                                    {link.nazwa}
+                                    {link.name}
                                 </NavigationMenuLink>
                             ))}
                         </NavigationMenuContent>
@@ -83,7 +83,7 @@ export default function Header({ data }: Readonly<HeaderProps>) {
                 </NavigationMenuList>
             )}
             <NavigationMenuLink href={cta.url} className="py-4 px-2 rounded-[20px] bg-white font-bold hover:bg-secondary">
-                {cta.nazwa}
+                {cta.name}
             </NavigationMenuLink>
         </NavigationMenu>
     )

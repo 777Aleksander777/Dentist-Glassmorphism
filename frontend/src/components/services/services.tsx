@@ -8,7 +8,7 @@ import React from "react";
 
 export default function Services({ data }: Readonly<ServicesProps>) {
 
-    const { tytul, opis} = data;
+    const { title, desc, carts } = data;
     const ref = React.useRef(null); 
     const isInView = useInView(ref, { once: true });
 
@@ -21,17 +21,20 @@ export default function Services({ data }: Readonly<ServicesProps>) {
                 >
         <section className="w-full max-w-[1900px] mx-auto my-[150px] px-[100px] relative">
             <div className="mb-[50px]">
-                <h2 className="text-6xl text-center font-bold text-primary">
-                    {tytul}
+                <h2 className="text-6xl text-center font-bold text-primary mb-2">
+                    {title}
                 </h2>
                 <p className="text-primary text-lg text-center">
-                    {opis}
+                    {desc}
                 </p>
             </div>
             <div className="w-full flex flex-wrap justify-center align-center items-center gap-12">
+                {/* <ServiceCard/>
                 <ServiceCard/>
-                <ServiceCard/>
-                <ServiceCard/>
+                <ServiceCard/> */}
+                {carts?.map((item) => (
+                    <ServiceCard key={item.title} tytul={item.title} opis={item.desc} img={item.img}/>
+                ))}
             </div>
         </section>
         </motion.div>

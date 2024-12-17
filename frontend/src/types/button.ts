@@ -1,5 +1,5 @@
 export type ButtonProps = {
-    nazwa: string,
+    name: string,
     url: string,
     isExternal: boolean,
 }

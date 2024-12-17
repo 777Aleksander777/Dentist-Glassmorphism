@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_layout_cards_sections",
+  "info": {
+    "displayName": "cards section"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "desc": {
+      "type": "text",
+      "required": true
+    },
+    "carts": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.cart",
+      "required": true,
+      "max": 4,
+      "min": 1
+    }
+  }
+}

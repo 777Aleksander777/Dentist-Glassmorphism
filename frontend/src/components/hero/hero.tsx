@@ -156,11 +156,12 @@ export default function Hero({ data }: Readonly<HeroProps>) {
                 <source src={imageUrl} type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <div className="my-auto px-8 py-12 rounded-[50px] border-[1px] border-gray-400 max-w-[800px] w-full h-fit bg-gradient-to-r from-black/20 to-accent/30 backdrop-blur-md shadow-2xl flex gap-8 flex-col justify-center align-center items-center">
-                <h1 className="text-4xl md:text-6xl font-bold text-white">
+            {/* bg-gradient-to-r */}
+            <div className="my-auto px-8 py-12 border-2 border-white/10 max-w-[800px] w-full h-fit bg-black/10  from-black/20 to-accent/30 backdrop-blur-md shadow-2xl flex flex-col justify-start align-start items-start">
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">
                     {tytul}
                 </h1>
-                <p className="text-md md:text-lg text-white">
+                <p className="text-md md:text-lg text-white mb-8">
                     {opis}
                 </p>
                 <Button className="bg-secondary w-[200px]">

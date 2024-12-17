@@ -369,6 +369,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
+  collectionName: 'about_pages';
+  info: {
+    displayName: 'About Page';
+    pluralName: 'about-pages';
+    singularName: 'about-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    blocks: Schema.Attribute.DynamicZone<
+      ['layout.info-section', 'layout.gallery-section', 'layout.cards-section']
+    > &
+      Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    desc: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::about-page.about-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    video: Schema.Attribute.Media<'videos'> & Schema.Attribute.Required;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -384,16 +418,11 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    desc: Schema.Attribute.Text & Schema.Attribute.Required;
     footer: Schema.Attribute.Component<'layout.footer', false> &
       Schema.Attribute.Required;
     header: Schema.Attribute.Component<'layout.header', false> &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 0;
-        },
-        number
-      >;
+      Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -401,41 +430,39 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    web_desc: Schema.Attribute.Text & Schema.Attribute.Required;
-    web_title: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
-export interface ApiStronaGlownaStronaGlowna extends Struct.SingleTypeSchema {
-  collectionName: 'strona_glownas';
+export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
+  collectionName: 'home_pages';
   info: {
-    description: '';
-    displayName: 'Strona g\u0142\u00F3wna';
-    pluralName: 'strona-glownas';
-    singularName: 'strona-glowna';
+    displayName: 'Home Page';
+    pluralName: 'home-pages';
+    singularName: 'home-page';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.services', 'layout.benefits', 'layout.about']
+      ['layout.info-section', 'layout.gallery-section', 'layout.cards-section']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    desc: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::strona-glowna.strona-glowna'
+      'api::home-page.home-page'
     > &
       Schema.Attribute.Private;
-    opis: Schema.Attribute.Text & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    tytul: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -443,98 +470,36 @@ export interface ApiStronaGlownaStronaGlowna extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiStronaONasStronaONas extends Struct.SingleTypeSchema {
-  collectionName: 'strona_o_nass';
+export interface ApiServicesPageServicesPage extends Struct.SingleTypeSchema {
+  collectionName: 'services_pages';
   info: {
-    displayName: 'Strona o nas';
-    pluralName: 'strona-o-nass';
-    singularName: 'strona-o-nas';
+    displayName: 'Services Page';
+    pluralName: 'services-pages';
+    singularName: 'services-page';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     blocks: Schema.Attribute.DynamicZone<
-      ['layout.services', 'layout.benefits', 'layout.about']
+      ['layout.info-section', 'layout.gallery-section', 'layout.cards-section']
     >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    desc: Schema.Attribute.Text & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::strona-o-nas.strona-o-nas'
+      'api::services-page.services-page'
     > &
       Schema.Attribute.Private;
-    opis: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
-    tytul: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     video: Schema.Attribute.Media<'videos'> & Schema.Attribute.Required;
-  };
-}
-
-export interface ApiStronaUslugiStronaUslugi extends Struct.SingleTypeSchema {
-  collectionName: 'strona_uslugis';
-  info: {
-    description: '';
-    displayName: 'Strona us\u0142ugi';
-    pluralName: 'strona-uslugis';
-    singularName: 'strona-uslugi';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    blocks: Schema.Attribute.DynamicZone<
-      ['layout.services', 'layout.benefits', 'layout.about']
-    >;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::strona-uslugi.strona-uslugi'
-    > &
-      Schema.Attribute.Private;
-    opis: Schema.Attribute.Text & Schema.Attribute.Required;
-    publishedAt: Schema.Attribute.DateTime;
-    tytul: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    video: Schema.Attribute.Media<'videos'> & Schema.Attribute.Required;
-  };
-}
-
-export interface ApiUslugiUslugi extends Struct.CollectionTypeSchema {
-  collectionName: 'uslugis';
-  info: {
-    displayName: 'Us\u0142ugi';
-    pluralName: 'uslugis';
-    singularName: 'uslugi';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::uslugi.uslugi'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    tytul: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
   };
 }
 
@@ -1047,11 +1012,10 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::global.global': ApiGlobalGlobal;
-      'api::strona-glowna.strona-glowna': ApiStronaGlownaStronaGlowna;
-      'api::strona-o-nas.strona-o-nas': ApiStronaONasStronaONas;
-      'api::strona-uslugi.strona-uslugi': ApiStronaUslugiStronaUslugi;
-      'api::uslugi.uslugi': ApiUslugiUslugi;
+      'api::home-page.home-page': ApiHomePageHomePage;
+      'api::services-page.services-page': ApiServicesPageServicesPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

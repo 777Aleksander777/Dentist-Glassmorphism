@@ -4,9 +4,9 @@ import { ListProps } from "./list"
 
 export type BenefitsOneProps = {
     data: {
-        tytul: string,
-        opis: string,
-        przycisk: ButtonProps,
+        title: string,
+        desc: string,
+        button: ButtonProps,
         imgs: [
             ImageProps,  
         ],

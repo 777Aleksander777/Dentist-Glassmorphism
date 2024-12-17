@@ -19,16 +19,13 @@
       "min": 1
     },
     "address": {
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     },
     "workingHours": {
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     },
     "contact": {
-      "type": "richtext",
-      "required": true
+      "type": "richtext"
     }
   }
 }

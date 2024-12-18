@@ -1,6 +1,6 @@
 "use client"
 
-import { HeroProps } from "@/types/hero";
+// import { HeroProps } from "@/types/hero";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import { StrapiImage } from "../utils/strapiImage";
@@ -11,11 +11,20 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
 import { getBackendUrl } from "@/lib/utils";
+import { ImageProps } from "@/types/image";
+import { Loader2 } from "lucide-react";
 
+type HeroProps = {
+    data: {
+        tytul: string,
+        opis: string,
+        img: ImageProps,
+    }
+}
 
 export default function Hero({ data }: Readonly<HeroProps>) {
 
-    const {tytul, opis, video} = data
+    const {tytul, opis, img} = data
 
     const ref = React.useRef(null);
     const [workingHours, setWorkingHours] = React.useState("");
@@ -30,7 +39,7 @@ export default function Hero({ data }: Readonly<HeroProps>) {
         async function loadImageUrl() {
             try {
                 const url = await getBackendUrl();
-                const image = url + video.url
+                const image = url + img.url
                 setImageUrl(image);
                 console.log(`Image URL: ${image}`);
             } catch (error) {
@@ -55,8 +64,8 @@ export default function Hero({ data }: Readonly<HeroProps>) {
 
     if(imageUrl == null) {
         return (
-            <div className="min-h-screen">
-                <h4>Ładowanie ...</h4>
+            <div className="min-h-screen w-screen flex justify-center align-center items-center">
+                <Loader2 className="animate-spin m-auto size-64 text-primary" />
             </div>
         );
     }
@@ -147,15 +156,16 @@ export default function Hero({ data }: Readonly<HeroProps>) {
             //     backgroundImage: `url('http://localhost:3001/uploads/tooth_Three_4c662ca114.png')`,
             // }}
             style={{
-                // backgroundImage: imageUrl ? `url('${imageUrl}')` : undefined,
-                // backgroundSize: "cover",
-                // backgroundPosition: "center",
+                backgroundImage: imageUrl ? `url('${imageUrl}')` : undefined,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
             }}
         >
-            <video className="absolute top-0 left-0 w-full h-full object-cover" autoPlay={true} loop preload="auto" muted>
+            {/* <video className="absolute top-0 left-0 w-full h-full object-cover" autoPlay={true} loop preload="auto" muted>
                 <source src={imageUrl} type="video/mp4" />
                 Your browser does not support the video tag.
-            </video>
+            </video> */}
+            {/* <Image className="absolute top-0 left-0 w-full h-full object-cover" src={imageUrl} alt="Hero Image" width={500} height={500}/> */}
             {/* bg-gradient-to-r */}
             <div className="my-auto px-8 py-12 border-2 border-white/10 max-w-[800px] w-full h-fit bg-black/10  from-black/20 to-accent/30 backdrop-blur-md shadow-2xl flex flex-col justify-start align-start items-start">
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-2">

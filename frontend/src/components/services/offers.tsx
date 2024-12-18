@@ -32,7 +32,7 @@ export default function Offers({ data }: Readonly<OffersOneProps>) {
             </div>
             <div className="w-full flex flex-wrap justify-center align-center items-center gap-12">
                 {data?.map((item) => (
-                    <ServiceCard key={item.tytul} tytul={item.tytul} opis={item.opis} img={item.img}/>
+                    <ServiceCard key={item.title} tytul={item.title} opis={item.desc} img={item.img}/>
                 ))}
             </div>
         </section>

@@ -39,8 +39,22 @@ import { getBuisnessData } from "@/data/loader";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import { pl } from "date-fns/locale";
 
-const formSchema = z.object({
+const formOneSchema = z.object({
+    firstName: z.string().min(3).max(50),
+    lastName: z.string().min(2).max(50),
+    emailAddress: z.string().min(2).max(50),
+    phoneNumber: z.string().min(2).max(50),
+    message: z.string()
+    .min(10, {
+      message: "Bio must be at least 10 characters.",
+    })
+    .max(160, {
+      message: "Bio must not be longer than 30 characters.",
+    }),
+})
+const formTwoSchema = z.object({
     firstName: z.string().min(3).max(50),
     lastName: z.string().min(2).max(50),
     emailAddress: z.string().min(2).max(50),
@@ -64,8 +78,19 @@ export default function Contact() {
     const [contact, setContact] = React.useState("");
     const [address, setAddress] = React.useState("");
 
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const formOne = useForm<z.infer<typeof formOneSchema>>({
+        resolver: zodResolver(formOneSchema),
+        defaultValues: {
+          firstName: "",
+          lastName: "",
+          emailAddress: "",
+          phoneNumber: "",
+          message: "",
+        },
+    })
+
+    const formTwo = useForm<z.infer<typeof formTwoSchema>>({
+        resolver: zodResolver(formTwoSchema),
         defaultValues: {
           firstName: "",
           lastName: "",
@@ -92,7 +117,8 @@ export default function Contact() {
         getData();
     })
 
-    async function onSubmit(values: z.infer<typeof formSchema>) {
+    
+    async function onSubmitOne(values: z.infer<typeof formOneSchema>) {
         // Do something with the form values.
         // ✅ This will be type-safe and validated.
         // sendEmail({email: "email@gmail.com",title: "hello",message: "world!!!"})
@@ -103,21 +129,51 @@ export default function Contact() {
               body: JSON.stringify({
                 email: values.emailAddress,
                 title: "Wiadomość email do Twojej strony",
-                message: values.message,
-              }),
-            });
+                message: `Numer telefonu: ${values.phoneNumber}
+                    Adres email: ${values.emailAddress}
+                    Wiadomość od ${values.firstName} ${values.lastName} - ${values.message}`,
+            }),
+        });
         
-            if (response.ok) {
+        if (response.ok) {
               console.log('Email wysłany pomyślnie!');
             } else {
-              console.error('Błąd podczas wysyłania emaila.');
+                console.error('Błąd podczas wysyłania emaila.');
             }
           } catch (error) {
-            console.error(`Błąd: ${error}`);
-          }
-        console.log(values)
-    }
+              console.error(`Błąd: ${error}`);
+            }
+        }
 
+        async function onSubmitTwo(values: z.infer<typeof formTwoSchema>) {
+            // Do something with the form values.
+            // ✅ This will be type-safe and validated.
+            // sendEmail({email: "email@gmail.com",title: "hello",message: "world!!!"})
+            try {
+                const response = await fetch('/api/send-email', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
+                    email: values.emailAddress,
+                    title: "Ktoś zarezerwował wizytę!",
+                    message: `Rezerwacja wizyty na: ${values.date}
+                    Numer telefonu: ${values.phoneNumber}
+                    Adres email: ${values.emailAddress}
+                    Zarezerwowana usługa: ${values.service}
+                    Wiadomość od ${values.firstName} ${values.lastName} - ${values.message}`,
+                  }),
+                });
+            
+                if (response.ok) {
+                  console.log('Email wysłany pomyślnie!');
+                } else {
+                  console.error('Błąd podczas wysyłania emaila.');
+                }
+              } catch (error) {
+                console.error(`Błąd: ${error}`);
+              }
+        }
+        
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true });
 
@@ -132,28 +188,28 @@ export default function Contact() {
                 <h2 className="text-6xl text-white font-bold">
                     Skontaktuj się z nami
                 </h2>
-                <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-8">
+                <Form {...formOne}>
+                            <form onSubmit={formOne.handleSubmit(onSubmitOne)} className="flex flex-col gap-8">
                                 <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
-                                    control={form.control}
+                                    control={formOne.control}
                                     name="firstName"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="First Name" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Imię" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                     />
                                     <FormField
-                                    control={form.control}
+                                    control={formOne.control}
                                     name="lastName"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Last Name" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Nazwisko" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -162,24 +218,24 @@ export default function Contact() {
                                 </div>
                                 <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
-                                    control={form.control}
+                                    control={formOne.control}
                                     name="emailAddress"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Email Address" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Email" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                     />
                                     <FormField
-                                    control={form.control}
+                                    control={formOne.control}
                                     name="phoneNumber"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Phone Number" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Numer tel" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -187,14 +243,14 @@ export default function Contact() {
                                     />
                                 </div>
                                 <FormField
-                                    control={form.control}
+                                    control={formOne.control}
                                     name="message"
                                     render={({ field }) => (
                                         <FormItem>
                                         <FormControl>
                                             <Textarea
-                                            placeholder="Message"
-                                            className="resize-none mx-auto md:w-full w-[90vw] p-4 rounded-[30px] bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
+                                            placeholder="Wiadomość"
+                                            className="resize-none mx-auto md:w-full w-[90vw] p-4 rounded-[5px] border-none bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
                                             {...field}
                                             />
                                         </FormControl>
@@ -202,7 +258,7 @@ export default function Contact() {
                                         </FormItem>
                                     )}
                                     />
-                                <Button className="bg-secondary md:mx-0 mx-auto  hover:bg-accent w-fit h-[50px]" type="submit">Submit</Button>
+                                <Button className="bg-secondary md:mx-0 mx-auto  hover:bg-accent w-fit h-[50px]" type="submit">Wyślij</Button>
                             </form>
                         </Form>
             </motion.div>
@@ -215,28 +271,28 @@ export default function Contact() {
                 <h2 className="text-6xl text-primary font-bold">
                     Umów się na wizytę
                 </h2>
-                <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className=" flex flex-col gap-8 ">
+                <Form {...formTwo}>
+                            <form onSubmit={formTwo.handleSubmit(onSubmitTwo)} className=" flex flex-col gap-8 ">
                                 <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
-                                    control={form.control}
+                                    control={formTwo.control}
                                     name="firstName"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="First Name" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Imię" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                     />
                                     <FormField
-                                    control={form.control}
+                                    control={formTwo.control}
                                     name="lastName"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Last Name" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Nazwisko" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -245,24 +301,24 @@ export default function Contact() {
                                 </div>
                                 <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
-                                    control={form.control}
+                                    control={formTwo.control}
                                     name="emailAddress"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Email Address" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Email" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                     />
                                     <FormField
-                                    control={form.control}
+                                    control={formTwo.control}
                                     name="phoneNumber"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Phone Number" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Numer tel" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -271,7 +327,7 @@ export default function Contact() {
                                 </div>
                                 <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
-                                    control={form.control}
+                                    control={formTwo.control}
                                     name="date"
                                     render={({ field }) => (
                                         <FormItem>
@@ -281,12 +337,12 @@ export default function Contact() {
                                                         <Button
                                                         variant={"outline"}
                                                         className={cn(
-                                                            "bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold",
+                                                            "bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold",
                                                             !field.value && "text-muted-foreground"
                                                         )}
                                                         >
                                                             {field.value ? (
-                                                                format(field.value, "PPP")
+                                                                format(field.value, "PPP", { locale: pl})
                                                             ) : (
                                                                 <span>Pick a date</span>
                                                             )}
@@ -311,14 +367,14 @@ export default function Contact() {
                                     )}
                                     />
                                     <FormField
-                                    control={form.control}
+                                    control={formTwo.control}
                                     name="service"
                                     render={({ field }) => (
                                         <FormItem>
                                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
-                                                    <SelectTrigger className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold">
-                                                        <SelectValue placeholder="Secect service" />
+                                                    <SelectTrigger className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold">
+                                                        <SelectValue placeholder="Wybierz usługę" />
                                                     </SelectTrigger>   
                                                 </FormControl>
                                                 <SelectContent>
@@ -333,14 +389,14 @@ export default function Contact() {
                                     />
                                 </div>
                                 <FormField
-                                    control={form.control}
+                                    control={formTwo.control}
                                     name="message"
                                     render={({ field }) => (
                                         <FormItem>
                                         <FormControl>
                                             <Textarea
-                                            placeholder="Message"
-                                            className="resize-none md:w-full w-[90vw] p-4 rounded-[30px] bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
+                                            placeholder="Wiadomość"
+                                            className="resize-none md:w-full w-[90vw] p-4 rounded-[5px] border-none bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
                                             {...field}
                                             />
                                         </FormControl>
@@ -348,7 +404,7 @@ export default function Contact() {
                                         </FormItem>
                                     )}
                                     />
-                                <Button className="bg-secondary text-primary hover:bg-white w-fit h-[50px]" type="submit">Submit</Button>
+                                <Button className="bg-secondary text-primary hover:bg-white w-fit h-[50px]" type="submit">Wyślij</Button>
                             </form>
                         </Form>
             </motion.div>

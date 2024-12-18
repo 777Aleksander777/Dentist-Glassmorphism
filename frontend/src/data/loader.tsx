@@ -161,7 +161,9 @@ export async function getHome() {
         //     }
         // }
         populate: {
-          video: true,
+          img: {
+            fields: ["url", "alternativeText", "width", "height"],
+          },
           blocks: {
             on: {
               "layout.cards-section": {
@@ -458,7 +460,7 @@ export async function getAbout() {
 
 export async function getOffers() {
 
-  const url = new URL('/api/uslugis', baseUrl);
+  const url = new URL('/api/services', baseUrl);
 
   url.search = qs.stringify({
     populate: {

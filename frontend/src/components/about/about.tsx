@@ -7,6 +7,7 @@ import { StrapiImage } from "../utils/strapiImage";
 import { motion, useInView} from 'framer-motion';
 import React from "react";
 import { getBackendUrl } from "@/lib/utils";
+import Link from "next/link";
 
 export default function About({ data }: Readonly<AboutOneProps>) {
 
@@ -73,7 +74,7 @@ export default function About({ data }: Readonly<AboutOneProps>) {
         //     </div>
         // </section>
         // </motion.div>
-        <section ref={ref} className="w-full md:h-[80vh] h-screen flex flex-col md:flex-row justify-center aling-center items-center overflow-hidden">
+        <section ref={ref} className="w-full md:h-[80vh] min-h-screen flex flex-col md:flex-row justify-center aling-center items-streach overflow-hidden">
             <motion.div
                 initial={{ x: "-500px", opacity: 0.1, }} // Start poza ekranem
                 animate={isInView ? { x: 0, opacity: 1, } : {}} // Animuj tylko gdy widoczny
@@ -87,13 +88,13 @@ export default function About({ data }: Readonly<AboutOneProps>) {
                         {desc}
                     </p>
                     <Button>
-                        {button.name}
+                        <Link href={button.url}>{button.name}</Link>
                     </Button>
             </motion.div>
-            <motion.div className="w-full h-full px-8 bg-no-repeat bg-primary/20"
+            <motion.div className={`w-full h-full min-h-[100vw] md:min-h-full px-8 bg-no-repeat bg-primary/20`}
                 style={{
                     backgroundImage: imageUrl ? `url('${imageUrl}')` : undefined,
-                    backgroundSize: "contain",
+                    backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
                 initial={{ x: "500px", opacity: 0.1 }} // Start poza ekranem

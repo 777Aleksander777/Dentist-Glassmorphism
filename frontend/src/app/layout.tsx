@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "../components/header/header";
 import Footer from "../components/footer/footer";
 import { getGlobalData } from "@/data/loader";
+import { pl } from "date-fns/locale";
 // import 'ionicons/css/ionicons.min.css';
 
 // const geistSans = localFont({
@@ -55,7 +56,7 @@ export default async function RootLayout({
   const { header, footer } = data;
 
   return (
-    <html lang="pl">
+    <html lang="en">
       <body
         className={`${poppinsRegular.variable} ${poppinsBold.variable} antialiased`}
       >

@@ -1,19 +1,12 @@
 import About from "@/components/about/about";
-import AboutFour from "@/components/about/aboutFour";
-import AboutThree from "@/components/about/aboutThree";
-import AboutTwo from "@/components/about/aboutTwo";
 import Benefits from "@/components/benefits/benefits";
-import BenefitsTwo from "@/components/benefits/benefitsTwo";
-import Expertise from "@/components/expertise/expertise";
 import FAQ from "@/components/FAQ/FAQ";
 import Hero from "@/components/hero/hero";
 import InfoOne from "@/components/info/info";
 import Services from "@/components/services/services";
-import Staff from "@/components/staff/staff";
 import { getHome } from "@/data/loader";
 import Testimonials from "@/components/testimonials/testimonials";
 import { Button } from "@/components/ui/button";
-// import { motion } from "motion/react"
 import * as motion from "motion/react-client"
 import InfoTwo from "@/components/info/infoTwo";
 import BookAppointment from "@/components/contact/bookAppointment";
@@ -50,7 +43,7 @@ export default async function Home() {
       <Expertise/>
       <About/>
       <Benefits/> */}
-      <Hero data={{tytul: data.data?.title, opis: data.data?.desc, video: data.data?.video}}/>
+      <Hero data={{tytul: data.data?.title, opis: data.data?.desc, img: data.data?.img}}/>
       {data?.data?.blocks.map(blockRenderer)}
       {/* <Testimonials/>
       <InfoOne/>

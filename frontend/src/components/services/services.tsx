@@ -19,16 +19,16 @@ export default function Services({ data }: Readonly<ServicesProps>) {
                 animate={isInView ? { y: 0, opacity: 1 } : {}} // Animuj tylko gdy widoczny
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-        <section className="w-full max-w-[1900px] mx-auto my-[150px] px-[100px] relative">
+        <section className="w-full max-w-[1900px] mx-auto my-[150px] md:px-[100px] px-8 relative">
             <div className="mb-[50px]">
-                <h2 className="text-6xl text-center font-bold text-primary mb-2">
+                <h2 className="md:text-6xl text-4xl text-center font-bold text-primary mb-2">
                     {title}
                 </h2>
                 <p className="text-primary text-lg text-center">
                     {desc}
                 </p>
             </div>
-            <div className="w-full flex flex-wrap justify-center align-center items-center gap-12">
+            <div className="w-full flex flex-wrap justify-center align-center items-streach gap-12">
                 {/* <ServiceCard/>
                 <ServiceCard/>
                 <ServiceCard/> */}

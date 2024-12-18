@@ -39,6 +39,7 @@ import { getBuisnessData } from "@/data/loader";
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import { pl } from "date-fns/locale";
 
 const formSchema = z.object({
     firstName: z.string().min(3).max(50),
@@ -71,7 +72,6 @@ export default function BookAppointment() {
           lastName: "",
           emailAddress: "",
           phoneNumber: "",
-          date: new Date(),
           service: "",
           message: "",
         },
@@ -123,28 +123,24 @@ export default function BookAppointment() {
 
     return (
         <motion.div
-                ref={ref}
-                initial={{ y: "100px", opacity: 0.1 }} // Start poza ekranem
-                animate={isInView ? { y: 0, opacity: 1 } : {}} // Animuj tylko gdy widoczny
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-        <section className="w-full max-w-[1900px] mx-auto mt-[150px] mb-[600px] px-[100px]">
-            <div className="relative w-full bg-white flex justify-between p-12 pb-64 rounded-[50px]">
-                <div className="w-2/5">
-                    <h3 className="text-primary text-6xl font-bold">
-                        Make appointment
-                    </h3>
-                    <div className="absolute p-12 left-[-30px] top-[175px] bg-primary rounded-[50px] ">
-                        <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-8">
-                                <div className="flex flex-wrapp gap-8">
+            initial={{ x: "500px", opacity: 0.1, }} // Start poza ekranem
+            animate={isInView ? { x: 0, opacity: 1, } : {}} // Animuj tylko gdy widoczny
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full h-full py-12 px-8 bg-white flex flex-col gap-8 justify-center align-center items-center"
+            >
+                <h2 className="text-6xl text-primary font-bold">
+                    Umów się na wizytę
+                </h2>
+                <Form {...form}>
+                            <form onSubmit={form.handleSubmit(onSubmit)} className=" flex flex-col gap-8 ">
+                                <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
                                     control={form.control}
                                     name="firstName"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent w-[250px] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="First Name" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Imię" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -156,21 +152,21 @@ export default function BookAppointment() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent w-[250px] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Last Name" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Nazwisko" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                     />
                                 </div>
-                                <div className="flex flex-wrapp gap-8">
+                                <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
                                     control={form.control}
                                     name="emailAddress"
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent w-[250px] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Email Address" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Email" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
@@ -182,14 +178,14 @@ export default function BookAppointment() {
                                     render={({ field }) => (
                                         <FormItem>
                                             <FormControl>
-                                                <Input className="bg-accent w-[250px] h-[50px] rounded-[50px] placeholder:text-md placeholder:font-bold" placeholder="Phone Number" {...field} />
+                                                <Input className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold" placeholder="Numer tel" {...field} />
                                             </FormControl>
                                             <FormMessage />
                                         </FormItem>
                                     )}
                                     />
                                 </div>
-                                <div className="flex flex-wrapp gap-8">
+                                <div className="flex flex-wrap justify-center align-center items-center gap-8">
                                     <FormField
                                     control={form.control}
                                     name="date"
@@ -201,12 +197,12 @@ export default function BookAppointment() {
                                                         <Button
                                                         variant={"outline"}
                                                         className={cn(
-                                                            "w-[250px] bg-accent h-[50px] pl-3 text-left font-normal text-md font-bold text-primary",
+                                                            "bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold",
                                                             !field.value && "text-muted-foreground"
                                                         )}
                                                         >
                                                             {field.value ? (
-                                                                format(field.value, "PPP")
+                                                                format(field.value, "PPP", { locale: pl})
                                                             ) : (
                                                                 <span>Pick a date</span>
                                                             )}
@@ -237,8 +233,8 @@ export default function BookAppointment() {
                                         <FormItem>
                                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                 <FormControl>
-                                                    <SelectTrigger className="bg-accent w-[250px] h-[50px] rounded-[50px] text-md font-bold">
-                                                        <SelectValue placeholder="Secect service" />
+                                                    <SelectTrigger className="bg-accent md:w-[250px] w-[90vw] h-[50px] rounded-[5px] border-none placeholder:text-md placeholder:font-bold">
+                                                        <SelectValue placeholder="Wybierz usługę" />
                                                     </SelectTrigger>   
                                                 </FormControl>
                                                 <SelectContent>
@@ -259,8 +255,8 @@ export default function BookAppointment() {
                                         <FormItem>
                                         <FormControl>
                                             <Textarea
-                                            placeholder="Message"
-                                            className="resize-none w-full p-4 rounded-[30px] bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
+                                            placeholder="Wiadomość"
+                                            className="resize-none md:w-full w-[90vw] p-4 rounded-[5px] border-none bg-accent min-h-[150px] placeholder:text-md placeholder:font-bold"
                                             {...field}
                                             />
                                         </FormControl>
@@ -268,57 +264,9 @@ export default function BookAppointment() {
                                         </FormItem>
                                     )}
                                     />
-                                <Button className="bg-secondary text-primary hover:bg-white w-fit h-[50px]" type="submit">Submit</Button>
+                                <Button className="bg-secondary text-primary hover:bg-white w-fit h-[50px]" type="submit">Wyślij</Button>
                             </form>
                         </Form>
-                    </div>
-                </div>
-                <div className="w-3/7 flex flex-wrap justify-start gap-12">
-                    <div className="w-2/5 flex flex-col gap-8">
-                        <h4 className="text-primary text-lg font-bold">
-                            Address:
-                        </h4>
-                            <ReactMarkdown 
-                                remarkPlugins={[remarkGfm]}
-                                rehypePlugins={[rehypeRaw]}
-                            >
-                                {workingHours}
-                            </ReactMarkdown>
-                        <p className="text-primary text-md">
-                            {/* 4th Floor, Plot No.22,145 Murphy Canyon Rd. Las Vegas */}
-                        </p>
-                    </div>
-                    <div className="w-2/5 flex flex-col gap-8">
-                        <h4 className="text-primary text-lg font-bold">
-                            Contact:
-                        </h4>
-                            <ReactMarkdown 
-                                remarkPlugins={[remarkGfm]}
-                                rehypePlugins={[rehypeRaw]}
-                            >
-                                {contact}
-                            </ReactMarkdown>
-                        <p className="text-primary text-md">
-                            {/* hello@example.com */}
-                        </p>
-                    </div>
-                    <div className="w-2/5 flex flex-col gap-8">
-                        <h4 className="text-primary text-lg font-bold">
-                            Address:
-                        </h4>
-                            <ReactMarkdown 
-                                remarkPlugins={[remarkGfm]}
-                                rehypePlugins={[rehypeRaw]}
-                            >
-                                {address}
-                            </ReactMarkdown>
-                        <p className="text-primary text-md">
-                        </p>
-                    </div>
-                </div>
-                <Image className="w-1/4 absolute top-[150px] right-[-30px]" src={"https://cdn.prod.website-files.com/66768138db6ea9da85e67429/6686420d7e5fdcb30b993732_appointment-hero-image.avif"} alt="Contact Image" width={500} height={500}/>
-            </div>
-        </section>
-        </motion.div>
+            </motion.div>
     )
 }

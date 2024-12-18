@@ -5,6 +5,7 @@ import { Button } from "../ui/button"
 import { HeroProps } from "@/types/hero"
 import React from "react"
 import { getBackendUrl } from "@/lib/utils"
+import { Loader2 } from "lucide-react"
 
 export default function HeroTwo({ data }: Readonly<HeroProps>) {
 
@@ -34,8 +35,8 @@ export default function HeroTwo({ data }: Readonly<HeroProps>) {
 
     if(imageUrl == null) {
         return (
-            <div className="min-h-screen">
-                <h4>Ładowanie ...</h4>
+            <div className="min-h-screen w-screen flex justify-center align-center items-center">
+                <Loader2 className="animate-spin m-auto size-64 text-primary" />
             </div>
         );
     }

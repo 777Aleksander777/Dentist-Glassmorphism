@@ -22,7 +22,7 @@ export default function ServiceCard({ tytul, opis, img }: Readonly<{tytul: strin
     const [isCardHover, setIsCardHover] = useState<boolean>(false);
 
     return (
-        <Card className="min-w-[300px] max-w-[425px] h-[325px] p-8 flex flex-row justify-between bg-accent rounded-[50px] text-primary hover:bg-primary hover:text-white" onMouseEnter={() => setIsCardHover(true)} onMouseLeave={() => setIsCardHover(false)}>
+        <Card className="min-w-[300px] max-w-[425px] min-h-[325px] p-8 flex flex-row justify-between bg-accent rounded-[50px] text-primary hover:bg-primary hover:text-white" onMouseEnter={() => setIsCardHover(true)} onMouseLeave={() => setIsCardHover(false)}>
             <CardHeader className="w-3/5 p-0 flex flex-col justify-between aling-start items-start">
                 <CardTitle className="text-[30px]">
                     {tytul}
